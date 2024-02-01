@@ -1,38 +1,159 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #63848a;
+  height: 100vh;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 1vmin);
+  background-color: #1e3327;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-footer {
+  align-items: center;
+  font-size: calc(10px + 1vmin);
+  background-color: #1e3327;
+  margin-top: auto;
+  padding: 5px;
+}
+
+
+/* Header styling */
+.App-header h2 {
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0;
+  font-size: 10px;
+}
+
+/* Navigation bar styling */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  background-color: #63848a;
+  padding: 1rem;
+  margin: 0;
+}
+
+.navbar-nav-left .nav-item {
+  margin-right: 1rem;
+}
+
+.navbar-nav-right .nav-item:last-child {
+  border-left: 1px solid #ccc;
+  padding-left: 1rem;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Home page styling */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.councilors-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-top: 20px;
+}
+h2 {
+  margin-bottom: 0;
+}
+
+.best-councilors,
+.worst-councilors {
+  width: 40%;
+  margin: 0px 40px;
+  border: 1px solid  #1e3327;
+}
+.councilor-item {
+  margin: 0px;
+}
+.user-edu {
+  /* display: flex;
+  justify-content: center; */
+  width: 80%;
+  border: 1px solid  #1e3327;
+  margin: 40px;
+}
+
+/* MyCouncilor page styling*/
+.councilor-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.councilor-selector {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px;
+}
+
+select {
+  margin-right: 50px;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+}
+
+.province-list {
+  list-style-type: none;
+
+}
+
+/* login page styling */
+.login {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+button {
+  width: 40%;
+  text-align: center;
 }
