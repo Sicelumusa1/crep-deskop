@@ -157,3 +157,15 @@ button {
   width: 40%;
   text-align: center;
 }
+
+/* Contact form styling */
+.contact-us {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.contact-us form textarea {
+  margin-bottom: 20px;
+  width: 100%;
+}
