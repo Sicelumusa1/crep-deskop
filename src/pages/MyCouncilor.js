@@ -14,8 +14,6 @@ const MyCouncilor = () => {
 
   useEffect(() => {
     fetchProvinces();
-    fetchMunicipalities();
-    fetchWards();
   }, []);
 
   const fetchProvinces = async () => {
@@ -47,7 +45,7 @@ const MyCouncilor = () => {
 
   const fetchCouncilors = async (ward) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${ward}/councilors/`);
+      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWard}/councilors/`);
       setCouncilors(response.data);
     } catch (error) {
       console.error('Error fetching councilors:', error);
@@ -82,15 +80,15 @@ const MyCouncilor = () => {
     setSelectedWard(ward);
 
     // Fetch wards for the selected municipality
-    if (ward) {
-      fetchCouncilors(ward);
-      // fetch ward details to display ward number
-      const selectedWardDetails = wards.find(w => w.id === ward);
-      setSelectedCouncilor(selectedWardDetails);
-    } else {
-      // Reset selectedCuncilor if no ward is selected
-      setSelectedCouncilor(null);
-    }  
+    // if (ward) {
+    //   fetchCouncilors(ward);
+    //   // fetch ward details to display ward number
+    //   const selectedWardDetails = wards.find(w => w.id === ward);
+    //   setSelectedCouncilor(selectedWardDetails);
+    // } else {
+    //   // Reset selectedCuncilor if no ward is selected
+    //   setSelectedCouncilor(null);
+    // }  
   };
 
   // // Filter municipalities based on selected province

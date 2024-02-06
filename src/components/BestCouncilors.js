@@ -39,9 +39,9 @@ const BestCouncilors = () => {
         {councilors.map((councilor) => (
           <div key={councilor.id} className="councilor-item">
             <h3>{councilor.name}</h3>
-            <p>Municipality: {councilor.Municipality}</p>
-            <p>Ward_Number: {councilor.Ward}</p>
-            <p>Rating: {councilor.rating}</p>
+            <h4>Municipality: {councilor.Municipality}</h4>
+            <h4>Ward_Number: {councilor.Ward}</h4>
+            <h4>Rating: {councilor.rating}</h4>
           </div>
         ))}
       </Slider>

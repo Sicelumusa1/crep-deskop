@@ -4,6 +4,7 @@ import '../App.css';
 const Login = () => {
   return (
     <div className='login'>
+      <h2>Login To Be Able To Send Your Ratings</h2>
       <form>
 	      {/* <label for='username'>Username</label>   */}
         <input id='username' type='email' placeholder='Enter Your Email Address'></input>

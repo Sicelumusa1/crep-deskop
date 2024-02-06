@@ -15,10 +15,9 @@ function Home() {
           <div className='worst-councilors'>
             <WorstCouncilors />
           </div>
-       </div>	  
-       <div className='user-edu'>
-          <UserEdu />
        </div>
+       <div className='eduHeader'><h2>How To Use This App</h2></div>  
+        <UserEdu />
       </div>
   );
 }
