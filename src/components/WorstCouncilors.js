@@ -2,8 +2,13 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Background from '../components/Background';
+import berg from '../assets/images/berg.jpg';
+import mother from '../assets/images/mother.jpg';
 
 const WorstCouncilors = () => {
+  const images = [berg, mother];
+  <Background images={images} />
   // Backend data
   const councilors = [
     {id: 1, name: "John Doe", rating: 2.5},

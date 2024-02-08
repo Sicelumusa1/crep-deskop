@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
-const Signup = () => {
+const Signup = ({ isRegistered, setIsRegistered }) => {
   // State variables for the form
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
@@ -14,6 +15,7 @@ const Signup = () => {
   const [province, setProvince] = useState('');
   const [municipality, setMunicipality] = useState('');
   const [ward, setWard] = useState('');
+  const navigate = useNavigate();
 
   // State variables for dropdown options
   const [provinces, setProvinces] = useState([]);
@@ -84,6 +86,9 @@ const Signup = () => {
       }
     });
       console.log('Registration successful:', response.data);
+      // Redirect to OTP verification page after successful registration
+      navigate('/otp-verification');
+
       // Reset form fields
       setFirst_name('');
       setLast_name('');
@@ -95,6 +100,7 @@ const Signup = () => {
       setProvince('');
       setMunicipality('');
       setWard('');
+      setIsRegistered(true)
     } catch (error) {
       console.error('Registration failed:', error);
     }
@@ -127,7 +133,7 @@ const Signup = () => {
             <select value={ward} onChange={(e) => setWard(e.target.value)} required>
               <option value=''>Select Ward</option>
               {wards.map((w) => (
-                <option key={w.id} value={w.id}>{w.number}</option>
+                <option key={w.ward_number} value={w.ward_number}>{w.ward_number}</option>
               ))}
             </select>
         </div>

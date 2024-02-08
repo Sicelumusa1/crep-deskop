@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../App.css';
 
-function NavBar() {
+
+function NavBar({ isAuthenticated }) {
   
   // Check authentication status
-  const isAuthenticated = false;
+  // const isAuthenticated = false;
   
 
   return (
@@ -19,7 +20,7 @@ function NavBar() {
         {isAuthenticated ? (
           <>
             <li className="nav-item"><Link to="/my-profile">My Profile</Link></li>
-            <li className="nav-item">Logged is as {}</li>
+            {/* <li className="nav-item">Logged is as {user.username}</li> */}
             <li className="nav-item"><Link to="/logout">Logout</Link></li>
           </>
         ) : (
