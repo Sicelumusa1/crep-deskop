@@ -1,22 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const BestCouncilors = () => {
-  // Backend data
-  const councilors = [
-    {id: 1, name: "John Doe", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.5},
-    {id: 2, name: "Peter Bower", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.8},
-    {id: 3, name: "Tom Smith", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.7},
-    {id: 4, name: "Jo Hudla", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.6},
-    {id: 5, name: "Losef Chaine", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.9},
-    {id: 6, name: "Jane Jackson", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.0},
-    {id: 7, name: "Cole Alex", Municipality: "Nelson Mandela Bay", Ward: 25684523, rating: 4.2},
-  ];
+  const [councilors, setCouncilors] = useState([]);
 
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -32,16 +23,36 @@ const BestCouncilors = () => {
     ],
   };
 
+  useEffect(() => {
+    const fetchCouncilors = async () => {
+      try {
+        // Fetch data from backend
+        const response = await fetch(`http://127.0.0.1:8000/crep/councilors/?rating_type=best`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setCouncilors(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchCouncilors();
+  }, []);
+
   return (
     <div className="bestCouncilors-carousel">
       <h2>Best Rated Councilors</h2>
       <Slider {...settings}>
         {councilors.map((councilor) => (
           <div key={councilor.id} className="councilor-item">
-            <h3>{councilor.name}</h3>
-            <h4>Municipality: {councilor.Municipality}</h4>
-            <h4>Ward_Number: {councilor.Ward}</h4>
-            <h4>Rating: {councilor.rating}</h4>
+            <h4>Name:  {councilor.names} {councilor.surname}</h4>
+            {/* {selectedProvinceName && <h4>Province:  {selectedProvinceName} </h4>}
+        {selectedMunicipalityName && <h4>Municipality:  {selectedMunicipalityName} </h4>} */}
+        <h4>Ward:  {councilor.ward_number}</h4>
+        <h4>Councilor Affiliation:  {councilor.affiliation}</h4>
+        <h4>Average Ratings:  {councilor.avg_ratings}</h4>
           </div>
         ))}
       </Slider>

@@ -38,13 +38,6 @@ const UserEdu = () => {
           </ul>
         </div>
       </div>
-      
-      {/* <div background='../asset/images/ai-generated-B.jpg'>
-        Step 2: Browse Councilors and Find Yours
-      </div>
-      <div background='../asset/images/typing.jpg'>
-        Step 3: Rate and Reciew Your Councilor
-      </div> */}
     </div>
   );
 };

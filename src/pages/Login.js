@@ -22,10 +22,18 @@ const Login = ({setIsAuthenticated}) => {
       // Call backend API to authenticate user
       const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/login/', { email, password });
       // If authentication is successful, redirect to "My Councilor" page
-      if (response.data.success) {
+      // console.log(response.data)
+      const {access_token, full_name, refresh_token} = response.data
+        // Store tokens in sessionStorage
+        sessionStorage.setItem('accessToken', access_token);
+        sessionStorage.setItem('refreshToken', refresh_token);
+        sessionStorage.setItem('User', full_name);
+        console.log(full_name)
+
         setIsAuthenticated(true);
+
+        // Redirect to "My Councolor" page
         navigate('/my-councilor');
-      }
       
     } catch (error) {
       console.error('Login failed:', error);

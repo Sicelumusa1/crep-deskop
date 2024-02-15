@@ -5,8 +5,7 @@ import '../App.css';
 
 function NavBar({ isAuthenticated }) {
   
-  // Check authentication status
-  // const isAuthenticated = false;
+  const User = sessionStorage.getItem('User');
   
 
   return (
@@ -20,7 +19,7 @@ function NavBar({ isAuthenticated }) {
         {isAuthenticated ? (
           <>
             <li className="nav-item"><Link to="/my-profile">My Profile</Link></li>
-            {/* <li className="nav-item">Logged is as {user.username}</li> */}
+            <li className="nav-item"><span>{User}</span></li>
             <li className="nav-item"><Link to="/logout">Logout</Link></li>
           </>
         ) : (
