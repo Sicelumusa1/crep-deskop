@@ -1,5 +1,5 @@
 import React from "react";
-import CouncilorInfo from "./Councilor";
+// import CouncilorInfo from "./Councilor";
 
 const MyWard = ({ wards, selectedWard, handleWardChange, councilor }) => {
   return (

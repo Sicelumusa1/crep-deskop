@@ -4,7 +4,7 @@ import MyProvince from "../components/MyProvince";
 import MyMunicipality from "../components/MyMunicipality";
 import MyWard from "../components/MyWard";
 import CouncilorInfo from "../components/Councilor";
-import MunicipalityList from "../components/MunicipalityList";
+// import MunicipalityList from "../components/MunicipalityList";
 import '../App.css';
 import CouncilorTable from "../components/CouncilorTable";
 
@@ -13,7 +13,7 @@ const MyCouncilor = () => {
   const [provinces, setProvinces] = useState([]);
   const [municipalities, setMunicipalities] = useState([]);
   const [wards, setWards] = useState([]);
-  const [councilors, setCouncilors] = useState([]);
+  // const [councilors, setCouncilors] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedMunicipality, setSelectedMunicipality] = useState('');
   const [selectedWard, setSelectedWard] = useState('');
@@ -81,25 +81,7 @@ const MyCouncilor = () => {
         .catch((error) => {
             console.error('Error fetching councilor details:', error)
         });
-  }
-
-  // const handleWardChange = (e) => {
-  //   const selectedWardNumber = e.target.value;
-  //   setSelectedWard(selectedWardNumber);
-  //   setSelectedCouncilor(null);
-  
-  //   // Fetch councilor for the selected ward
-  //   axios
-  //     .get(`http://127.0.0.1:8000/crep/wards/${selectedWardNumber}/councilors/`)
-  //     .then((response) => {
-  //       console.log('Councilor data:', response.data); // Log the response data
-  //       setSelectedCouncilor(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching councilor details:', error);
-  //     });
-  // };
-  
+  }  
   
   return (
     <div className='councilor-info'>
