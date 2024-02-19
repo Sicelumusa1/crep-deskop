@@ -4,7 +4,6 @@ import MyProvince from "../components/MyProvince";
 import MyMunicipality from "../components/MyMunicipality";
 import MyWard from "../components/MyWard";
 import CouncilorInfo from "../components/Councilor";
-// import MunicipalityList from "../components/MunicipalityList";
 import '../App.css';
 import CouncilorTable from "../components/CouncilorTable";
 
@@ -120,7 +119,7 @@ const MyCouncilor = () => {
             ) : (
               // Display details of the selected ward/councilor
               <CouncilorInfo 
-                councilor={selectedCouncilor} 
+                selectedCouncilor={selectedCouncilor} 
                 selectedMunicipalityName={selectedMunicipalityName} 
                 selectedProvinceName={selectedProvinceName} 
               />

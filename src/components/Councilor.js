@@ -1,17 +1,17 @@
 import RatingForm from "./RatingForm";
 
-const CouncilorInfo = ({ councilor,selectedMunicipalityName, selectedProvinceName }) => {
+const CouncilorInfo = ({ selectedCouncilor,selectedMunicipalityName, selectedProvinceName }) => {
 
-  // console.log('Councilor object:', councilor);
+  // console.log('Councilor object:', selectedCouncilor);
   // console.log('Municipality object:', selectedMunicipalityName);
   // console.log('Province object:', selectedProvinceName);
   
 
-  if (!councilor || councilor.length === 0){
+  if (!selectedCouncilor || selectedCouncilor.length === 0){
     return
 }  
 
-const councilorInfo = councilor[0];
+const councilorInfo = selectedCouncilor[0];
   return (
     <div className="councilor-details">
         {/* Councilor details */}

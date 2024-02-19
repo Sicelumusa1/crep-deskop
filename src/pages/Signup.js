@@ -15,12 +15,14 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
   const [province, setProvince] = useState('');
   const [municipality, setMunicipality] = useState('');
   const [ward, setWard] = useState('');
+  const [councilor, setCouncilor] = useState('');
   const navigate = useNavigate();
 
   // State variables for dropdown options
   const [provinces, setProvinces] = useState([]);
   const [municipalities, setMunicipalities] = useState([]);
   const [wards, setWards] = useState([]);
+  const [councilors, setCouncilors] = useState([]);
 
   useEffect(() => {
     fetchProvinces();
@@ -58,6 +60,29 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     }
   };
 
+  // Fetch councilors based on selected ward
+  const handleWardChange = async(selectedWard) => {
+    setWard(selectedWard);
+
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWard}/councilors/`)
+      setCouncilors(response.data);
+    } catch (error) {
+      console.error('Error fetching councilors:', error);
+    }
+  };
+
+// Function to resolve ward number into ward ID
+const resolveWardId = async (selectedWardNumber) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWardNumber}`);
+    return response.data[0].id;
+  } catch (error) {
+    console.error('Error resolving ward number:', error);
+    return null;
+  }
+};
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +104,8 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
       section_or_area,
       province,
       municipality,
-      ward
+      ward: resolveWardId,
+      councilor
     }, {
       headers: {
         'Content-Type': 'application/json'
@@ -100,6 +126,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
       setProvince('');
       setMunicipality('');
       setWard('');
+      setCouncilor('')
       setIsRegistered(true)
     } catch (error) {
       console.error('Registration failed:', error);
@@ -130,10 +157,16 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
               <option key={muni.id} value={muni.id}>{muni.name}</option>
             ))}
             </select>
-            <select value={ward} onChange={(e) => setWard(e.target.value)} required>
+            <select value={ward} onChange={(e) => handleWardChange(e.target.value)} required>
               <option value=''>Select Ward</option>
               {wards.map((w) => (
                 <option key={w.ward_number} value={w.ward_number}>{w.ward_number}</option>
+              ))}
+            </select>
+            <select value={councilor} onChange={(e) => setCouncilor(e.target.value)} required>
+              <option value=''>Select Councilor</option>
+              {councilors.map((c) => (
+                <option key={c.id} value={c.id}>{c.names}</option>
               ))}
             </select>
         </div>

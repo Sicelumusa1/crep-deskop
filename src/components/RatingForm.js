@@ -8,6 +8,8 @@ const RatingForm = ({ councilorId }) => {
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState('');
   const [services, setServices] = useState([]);
+  const [message, setMessage] = useState('');
+  const [messageClass, setMessageClass] = useState('');
 
 useEffect(() => {
   // Fetch services from bachend
@@ -31,7 +33,12 @@ const handleFeedbackChange = (e) => {
 const handleSubmit = () => {
   // Handle the invalid inputs
   if (!selectedService || rating === 0) {
-    alert("Please select a service and provide a rarting, by clicking the stars");
+    setMessage("Please select a service and the stars");
+    setMessageClass('error-message');
+    setTimeout(() => {
+      setMessage('');
+      setMessageClass('');
+    }, 5000);
     return;
   }
 
@@ -55,19 +62,46 @@ const handleSubmit = () => {
   axios.post(`http://127.0.0.1:8000/crep/councilors/${councilorId}/rate_councilor/`, data, { headers })
     .then((response) => {
       // Successful submission
-      console.log("Raring submited successfully:", response.data);
+      console.log("Rating submited successfully:", response.data);
+      setMessage('Rating submited successfully');
+      setMessageClass('success-message');
+      setTimeout(() => {
+      setMessage('');
+      setMessageClass('');
+    }, 5000);
       // Reset form fields
       setSelectedService('');
       setRating(0);
       setFeedback('');
-      alert('Rating submited successfully!');
+      // alert('Rating submited successfully!');
     })
     .catch((error) => {
+      // Error handling
+      if (error.response && error.response.data && error.response.data.message) {
+        setMessage(error.response.data.message);
+      } else if (error.response && error.response.status === 401) {
+        setMessage('You need to login to rate a councilor');
+      } else if (error.response && error.response.status === 400) {
+        const errorMessage = error.response.data.message;
+        if (errorMessage.includes("not your councilor")) {
+          setMessage("This is not your councilor, you can't rate them");
+        } else if (errorMessage.includes("once per month")) {
+          setMessage("You can only update your rating for this service once per month.", 'error-message');
+        } else {
+          setMessage(errorMessage);
+        }
+      }
+      // setMessage("An error occurred while submitting the rating. Please try again.");
+      setMessageClass('error-message');
+      setTimeout(() => {
+      setMessage('');
+      setMessageClass('');
+    }, 5000);
       console.error('Error submitting ratings:', error);
-      alert("An error occurred while submitting the rating. Please try again.")
+      
     });
 };
-  
+
 return (
     <div className="rating-form">
         <div className="rate"><h3 >Rate This Councilor</h3></div>
@@ -96,6 +130,7 @@ return (
         />
 
         <button onClick={handleSubmit}>Submit</button>
+        {message && <div className={`message ${messageClass}`}>{message}</div>}
     </div>
   );
 };

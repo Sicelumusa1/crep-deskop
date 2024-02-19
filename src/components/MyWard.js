@@ -1,4 +1,5 @@
 import React from "react";
+
 // import CouncilorInfo from "./Councilor";
 
 const MyWard = ({ wards, selectedWard, handleWardChange, councilor }) => {
@@ -8,7 +9,7 @@ const MyWard = ({ wards, selectedWard, handleWardChange, councilor }) => {
 	      <select onChange={handleWardChange} value={selectedWard}>
           <option value="">Select a ward</option>
           {wards.map((ward) => (
-           <option key={ward.id} value={ward.id}>{ward.ward_number}</option>
+           <option key={ward.ward_number} value={ward.ward_number}>{ward.ward_number}</option>
          ))}
         </select>
     </div>

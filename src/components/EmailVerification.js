@@ -17,13 +17,15 @@ const EmailVerification = ({isVerified, setIsVerified}) => {
     try {
       // call backend API
       const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/verify_email/', { otp });
-      // handle verification outcome
-      setVerOutcome(response.data.success);
       // If verification is successful, navigate to login page
-      if (response.data.success) {
+      if (response.data) {
+        setVerOutcome(true);
+        setIsVerified(true);
         navigate('/login');
+      } else {
+        setVerOutcome(false);
       }
-      setIsVerified(true)
+      
     } catch (error) {
       // Error handling
       console.error('Invalid OPT. try again:', error);

@@ -230,6 +230,18 @@ span {
   justify-content: center;
   align-items: center;
 }
+.success-message {
+  z-index: 1;
+  color: aquamarine;
+  padding: 10px;
+}
+.error-message {
+  z-index: 1;
+  color: rgb(209, 23, 23);
+  padding: 10px;
+}
+
+
 .rate {
   width: 80%;
   display: flex;
@@ -372,3 +384,4 @@ ul {
   list-style: none;
   text-align: center;
 }
+
