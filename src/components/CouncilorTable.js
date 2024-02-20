@@ -7,7 +7,7 @@ const [councilors, setCouncilors] = useState([]);
 
 useEffect(() => {
       // Fetch wards for the selected municipality
-  axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipality}/wards/`)
+  axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipality}/wards/`)
     .then((response) => setWards(response.data))
     .catch((error) => console.error('Error fetching wards:', error));
 }, [selectedMunicipality]);
@@ -17,7 +17,7 @@ useEffect(() => {
   const fetchCouncilors = async () => {
     const councilorsData = [];
     for (const ward of wards) {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${ward.ward_number}/councilors`);
+      const response = await axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/wards/${ward.ward_number}/councilors`);
       councilorsData.push(...response.data);
     }
     setCouncilors(councilorsData);

@@ -20,7 +20,7 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/login/', { email, password });
+      const response = await axios.post('https://crep-9988a4a400d8.herokuapp.com/api/v1/auth/login/', { email, password });
       // If authentication is successful, redirect to "My Councilor" page
       // console.log(response.data)
       const {access_token, full_name, refresh_token} = response.data

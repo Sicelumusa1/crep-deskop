@@ -13,7 +13,7 @@ const RatingForm = ({ councilorId }) => {
 
 useEffect(() => {
   // Fetch services from bachend
-  axios.get('http://127.0.0.1:8000/crep/services/')
+  axios.get('https://crep-9988a4a400d8.herokuapp.com/crep/services/')
     .then(response => setServices(response.data))
     .catch(error => console.error('Error fetching services:', error))
 }, []);
@@ -59,7 +59,7 @@ const handleSubmit = () => {
   };
 
   // Send a post request to backend
-  axios.post(`http://127.0.0.1:8000/crep/councilors/${councilorId}/rate_councilor/`, data, { headers })
+  axios.post(`https://crep-9988a4a400d8.herokuapp.com/crep/councilors/${councilorId}/rate_councilor/`, data, { headers })
     .then((response) => {
       // Successful submission
       console.log("Rating submited successfully:", response.data);

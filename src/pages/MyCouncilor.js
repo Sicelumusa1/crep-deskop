@@ -23,7 +23,7 @@ const MyCouncilor = () => {
 
   useEffect(() => {
     // Fetch provinces
-    axios.get('http://127.0.0.1:8000/crep/provinces/')
+    axios.get('https://crep-9988a4a400d8.herokuapp.com/crep/provinces/')
     .then((response) => setProvinces(response.data))
     .catch((error) => console.error('Error fetching provinces:', error));
   }, []);
@@ -37,12 +37,12 @@ const MyCouncilor = () => {
       setSelectedCouncilor(null);
   
       // Fetch municipalities for the selected province
-      axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvinceId}/municipalities/`)
+      axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/provinces/${selectedProvinceId}/municipalities/`)
         .then((response) => setMunicipalities(response.data))
         .catch((error) => console.error('Error fetching municipalities:', error));
 
         // Fetch Province Name
-        axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvinceId}`)
+        axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/provinces/${selectedProvinceId}`)
           .then((response) => setSelectedProvinceName(response.data.name))
           .catch((error) => console.error('Error fetching province details'));
     };
@@ -55,12 +55,12 @@ const MyCouncilor = () => {
     setSelectedCouncilor(null);
 
     // Fetch wards for the selected municipality
-    axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipalityId}/wards/`)
+    axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipalityId}/wards/`)
       .then((response) => setWards(response.data))
       .catch((error) => console.error('Error fetching wards:', error));
 
     // Fetch Municipality Name
-    axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipalityId}`)
+    axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipalityId}`)
           .then((response) => setSelectedMunicipalityName(response.data.name))
           .catch((error) => console.error('Error fetching Municipality details'));
   };
@@ -73,7 +73,7 @@ const MyCouncilor = () => {
 
     // Fetch councilor for the selected ward
       axios
-        .get(`http://127.0.0.1:8000/crep/wards/${selectedWardNumber}/councilors/`)
+        .get(`https://crep-9988a4a400d8.herokuapp.com/crep/wards/${selectedWardNumber}/councilors/`)
         .then((response) => {
           setSelectedCouncilor(response.data)
         })
@@ -103,12 +103,42 @@ const MyCouncilor = () => {
             handleWardChange={handleWardChange}
           />
         </div>
-        {/* {selectedProvince && !selectedMunicipality && (<MunicipalityList {...{ municipalities, wards }} />)} */}
-        {/* {selectedMunicipality && (<CouncilorTable {...CouncilorInfo(councilors)} />)} */}
-        {/* <div className="detail-info">
-          {selectedCouncilor && <CouncilorInfo councilor={selectedCouncilor} selectedMunicipalityName={selectedMunicipalityName} selectedProvinceName={selectedProvinceName} />}
-        </div> */}
 
+        <div className="province-info">
+          {!selectedProvince && !selectedMunicipality && ( 
+            <div className='province-list'>
+              <h3>List of Provinces</h3>
+            <ul>
+              {provinces.map((province) => { 
+                  return (
+                    <li key={province.id}>
+                      {province.name}
+                    </li>
+                  );
+                })}
+              </ul> 
+            </div> 
+          )} 
+        </div>
+
+        {/* List of municipalities with number of wards */}
+        <div className="municipality-info">
+          {selectedProvince && !selectedMunicipality &&( 
+          <div className='municipality-list'>
+            <h3>Municipalities Under This Province</h3>
+            <ul>
+              {municipalities.map((municipality) => {
+                return (
+                  <li key={municipality.id}>
+                    {municipality.name}
+                  </li>
+                );
+              })}
+            </ul>
+          </div> 
+          )}
+        </div>
+	  
         <div className="detail-info">
 
           {(selectedProvince && selectedMunicipality && !selectedWard) ? (
@@ -124,100 +154,7 @@ const MyCouncilor = () => {
                 selectedProvinceName={selectedProvinceName} 
               />
             )}
-
         </div>
-
-        
-
-
-	   
-
-	  {/* // Municipality dropdown */}
-    {/* //     <select onChange={handleMunicipalityChange} value={selectedMunicipality} disabled={!selectedProvince}>
-    //       <option value="">Select a municipality</option>
-    //       {municipalities.map((municipality) => ( */}
-    {/* //         <option key={municipality.id} value={municipality.id}>{municipality.name}</option>
-    //       ))}
-    //     </select> */}
-
-	  {/* Ward dropdown */}
-    {/* //     <select onChange={handleWardChange} value={selectedWard} disabled={!selectedMunicipality}>
-    //       <option value="">Select a ward</option>
-    //       {wards.map((ward) => ( */}
-    {/* //         <option key={ward.id} value={ward.ward_number}>{ward.ward_number}</option>
-    //       ))}
-    //     </select> */}
-    {/* //   </div> */}
-       
-	  {/* List of provinces with number of municipalities */}
-	  {/* //  {!selectedProvince && !selectedMunicipality && ( */}
-	  {/* //  <div className='province-list'>
-    //     <ul>
-    //       {provinces.map((province) => { */}
-    {/* //         const provinceMunicipalities = municipalities.filter(municipality => municipality.province === province.id);
-    //         return (
-    //           <li key={province.id}>
-    //             {province.name}: {provinceMunicipalities.length} municipalities
-    //           </li>
-    //         );
-    //       })}
-    //     </ul> */}
-    {/* //   </div> */}
-    {/* // )} */}
-
-    {/* List of municipalities with number of wards */}
-	  {/* // {selectedProvince && !selectedMunicipality &&( */}
-	  {/* //  <div className='municipality-list'>
-    //     <ul>
-    //       {municipalities.map((municipality) => { */}
-    {/* //         const municipalityWards = wards.filter(ward => ward.municipality === municipality.id);
-    //         return (
-    //           <li key={municipality.id}>
-    //             {municipality.name}: {municipalityWards.length} wards
-    //           </li>
-    //         );
-    //       })}
-    //     </ul> */}
-    {/* //   </div> */}
-    {/* // )}  
-
-    //    <div className='table'> */}
-      {/* Table of Councilors Per Municipality */}
-    {/* //     {selectedMunicipality &&( */}
-    {/* //       <table>
-    //         <thead>
-    //           <tr>
-    //             <th>Ward No</th>
-    //             <th>Names</th>
-    //             <th>Surname</th>
-    //             <th>Affiliation</th>
-    //           </tr>
-    //         </thead>
-    //         <tbody>
-    //           {councilors.map((councilor) => ( */}
-    {/* //             <tr key={councilor.id} onClick={() => handleCouncilorSelect(councilor.id)}>
-    //               <td>{councilor.ward_number}</td>
-    //               <td>{councilor.names}</td>
-    //               <td>{councilor.surname}</td>
-    //               <td>{councilor.affiliation}</td>
-    //             </tr>
-    //           ))}
-    //         </tbody> */}
-    {/* //       </table> */}
-    {/* //     )}
-    //   </div> */}
-    {/* //   <div className='councilor-details'> */}
-         {/* Councilors details */}
-    {/* //     {selectedCouncilor &&( */}
-    {/* //       <div>
-    //         <h6>The councilor for ward {selectedWard}</h6>
-    //         <h6>of {selectedMunicipality.name} Municipality</h6>
-    //         <h6>of the {selectedProvince.name} Province</h6>
-    //         <h6>is: {selectedCouncilor.names} {selectedCouncilor.surname}</h6>
-    //         <h6>who is a member of {selectedCouncilor.affiliation}</h6>
-    //       </div>
-    //     )}
-    //   </div> */}
     </div>
   );
 };
