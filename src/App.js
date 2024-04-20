@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import Home from './pages/Home';
-import ContactUs from './pages/Contact';
+import Contact from './pages/Contact';
+import Stories from './pages/Stories';
 import MyProfile from  './pages/MyProfile';
 import MyCouncilor from './pages/MyCouncilor';
 import Signup from './pages/Signup';
@@ -28,7 +29,8 @@ function App() {
             <NavBar isAuthenticated={isAuthenticated} />
             <Routes>
               <Route path="/" exact element={<Home />} />
-              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/report" element={<Stories />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/my-councilor" element={<MyCouncilor />} />
               <Route path="/my-profile" element={<MyProfile />} />
               <Route path="/signup" element={<Signup  isRegistered={isRegistered}  setIsRegistered={setIsRegistered} />} />
