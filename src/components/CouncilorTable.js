@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 const CouncilorTable = ({ selectedMunicipality }) => {
-    const [wards, setWards] = useState([]);   
+const [wards, setWards] = useState([]);   
 const [councilors, setCouncilors] = useState([]);
+
+
 
 useEffect(() => {
       // Fetch wards for the selected municipality
-  axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipality}/wards/`)
-    .then((response) => setWards(response.data))
+  axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipality}/wards/`)
+    .then((response) => {
+      setWards(response.data);
+    })
     .catch((error) => console.error('Error fetching wards:', error));
 }, [selectedMunicipality]);
 
 useEffect(() => {
   // Fetch councilors for each ward
   const fetchCouncilors = async () => {
-    const councilorsData = [];
-    for (const ward of wards) {
-      const response = await axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/wards/${ward.ward_number}/councilors`);
-      councilorsData.push(...response.data);
-    }
-    setCouncilors(councilorsData);
+    const councilorsData = await Promise.all(wards.map(async (ward) => {
+      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${ward.ward_number}/councilors`);
+      return response.data;
+    }));
+    const flatCouncilorsData = councilorsData.flat();
+    setCouncilors(flatCouncilorsData);
   };
 
   if (wards.length > 0) {
     fetchCouncilors();
   }
 }, [wards]);
+
 
 return (
       <div className="table">
@@ -37,7 +43,6 @@ return (
                  <th>Ward No</th>
                  <th>Names</th>
                  <th>Surname</th>
-                 <th>Affiliation</th>
                  <th>No of Ratings</th>
                  <th>Average Rating</th>
                </tr>
@@ -48,7 +53,6 @@ return (
                    <td>{councilor.ward_number}</td>
                    <td>{councilor.names}</td>
                    <td>{councilor.surname}</td>
-                   <td>{councilor.affiliation}</td>
                    <td>{councilor.no_of_ratings}</td>
                    <td>{councilor.avg_ratings}</td>
                  </tr>

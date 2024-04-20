@@ -16,7 +16,7 @@ const EmailVerification = ({isVerified, setIsVerified}) => {
     e.preventDefault();
     try {
       // call backend API
-      const response = await axios.post('https://crep-9988a4a400d8.herokuapp.com/api/v1/auth/verify_email/', { otp });
+      const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/verify_email/', { otp });
       // If verification is successful, navigate to login page
       if (response.data) {
         setVerOutcome(true);

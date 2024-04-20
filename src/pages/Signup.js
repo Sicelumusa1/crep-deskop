@@ -30,7 +30,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
 
   const fetchProvinces = async () => {
     try {
-      const response = await axios.get('https://crep-9988a4a400d8.herokuapp.com/crep/provinces/');
+      const response = await axios.get('http://127.0.0.1:8000/crep/provinces/');
       setProvinces(response.data);
     } catch (error) {
       console.error('Error fetching provinces:', error);
@@ -42,7 +42,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setProvince(selectedProvince);
 
     try {
-      const response = await axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/provinces/${selectedProvince}/municipalities/`);
+      const response = await axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvince}/municipalities/`);
       setMunicipalities(response.data);
     } catch (error) {
       console.error('Error fetching municipalities:', error);
@@ -53,7 +53,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setMunicipality(selectedMunicipality);
 
     try {
-      const response = await axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipality}/wards/`);
+      const response = await axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipality}/wards/`);
       setWards(response.data);
     } catch (error) {
       console.error('Error fetching wards:', error);
@@ -65,7 +65,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setWard(selectedWard);
 
     try {
-      const response = await axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/wards/${selectedWard}/councilors/`)
+      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWard}/councilors/`)
       setCouncilors(response.data);
     } catch (error) {
       console.error('Error fetching councilors:', error);
@@ -75,7 +75,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
 // Function to resolve ward number into ward ID
 const resolveWardId = async (selectedWardNumber) => {
   try {
-    const response = await axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/wards/${selectedWardNumber}`);
+    const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWardNumber}`);
     return response.data[0].id;
   } catch (error) {
     console.error('Error resolving ward number:', error);
@@ -94,7 +94,7 @@ const resolveWardId = async (selectedWardNumber) => {
       
     // Send registration data to backend
     try {
-      const response = await axios.post('https://crep-9988a4a400d8.herokuapp.com/api/v1/auth/signup/', {
+      const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/signup/', {
       email,
       password,
       password2,

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 const WorstCouncilors = () => {
   const [councilors, setCouncilors] = useState([]);
 
@@ -15,7 +16,7 @@ const WorstCouncilors = () => {
     autoplaySpeed: 3000,
     responsive: [
       {
-        breakepoint: 768,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
         },
@@ -27,7 +28,7 @@ const WorstCouncilors = () => {
     const fetchCouncilors = async () => {
       try {
         // Fetch data from backend
-        const response = await fetch(`https://crep-9988a4a400d8.herokuapp.com/crep/councilors/?rating_type=worst`);
+        const response = await fetch(`http://127.0.0.1:8000/crep/councilors/?rating_type=worst`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -51,10 +52,9 @@ const WorstCouncilors = () => {
             {/* {selectedProvinceName && <h4>Province:  {selectedProvinceName} </h4>}
         {selectedMunicipalityName && <h4>Municipality:  {selectedMunicipalityName} </h4>} */}
         <h4>Ward:  {councilor.ward_number}</h4>
-        <h4>Councilor Affiliation:  {councilor.affiliation}</h4>
         <h4>Average Ratings:  {councilor.avg_ratings}</h4>
-          </div>
-        ))}
+           </div>
+         ))}
       </Slider>
     </div>
   );

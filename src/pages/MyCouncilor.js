@@ -23,7 +23,7 @@ const MyCouncilor = () => {
 
   useEffect(() => {
     // Fetch provinces
-    axios.get('https://crep-9988a4a400d8.herokuapp.com/crep/provinces/')
+    axios.get('http://127.0.0.1:8000/crep/provinces/')
     .then((response) => setProvinces(response.data))
     .catch((error) => console.error('Error fetching provinces:', error));
   }, []);
@@ -37,12 +37,12 @@ const MyCouncilor = () => {
       setSelectedCouncilor(null);
   
       // Fetch municipalities for the selected province
-      axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/provinces/${selectedProvinceId}/municipalities/`)
+      axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvinceId}/municipalities/`)
         .then((response) => setMunicipalities(response.data))
         .catch((error) => console.error('Error fetching municipalities:', error));
 
         // Fetch Province Name
-        axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/provinces/${selectedProvinceId}`)
+        axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvinceId}`)
           .then((response) => setSelectedProvinceName(response.data.name))
           .catch((error) => console.error('Error fetching province details'));
     };
@@ -55,12 +55,12 @@ const MyCouncilor = () => {
     setSelectedCouncilor(null);
 
     // Fetch wards for the selected municipality
-    axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipalityId}/wards/`)
+    axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipalityId}/wards/`)
       .then((response) => setWards(response.data))
       .catch((error) => console.error('Error fetching wards:', error));
 
     // Fetch Municipality Name
-    axios.get(`https://crep-9988a4a400d8.herokuapp.com/crep/municipalities/${selectedMunicipalityId}`)
+    axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipalityId}`)
           .then((response) => setSelectedMunicipalityName(response.data.name))
           .catch((error) => console.error('Error fetching Municipality details'));
   };
@@ -73,7 +73,7 @@ const MyCouncilor = () => {
 
     // Fetch councilor for the selected ward
       axios
-        .get(`https://crep-9988a4a400d8.herokuapp.com/crep/wards/${selectedWardNumber}/councilors/`)
+        .get(`http://127.0.0.1:8000/crep/wards/${selectedWardNumber}/councilors/`)
         .then((response) => {
           setSelectedCouncilor(response.data)
         })
@@ -142,7 +142,6 @@ const MyCouncilor = () => {
         <div className="detail-info">
 
           {(selectedProvince && selectedMunicipality && !selectedWard) ? (
-            
             // Display all councilors of the Municipality
             <CouncilorTable selectedMunicipality={selectedMunicipality} />
             

@@ -27,7 +27,7 @@ const BestCouncilors = () => {
     const fetchCouncilors = async () => {
       try {
         // Fetch data from backend
-        const response = await fetch(`https://crep-9988a4a400d8.herokuapp.com/crep/councilors/?rating_type=best`);
+        const response = await fetch(`http://127.0.0.1:8000/crep/councilors/?rating_type=best`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -51,7 +51,6 @@ const BestCouncilors = () => {
             {/* {selectedProvinceName && <h4>Province:  {selectedProvinceName} </h4>}
         {selectedMunicipalityName && <h4>Municipality:  {selectedMunicipalityName} </h4>} */}
         <h4>Ward:  {councilor.ward_number}</h4>
-        <h4>Councilor Affiliation:  {councilor.affiliation}</h4>
         <h4>Average Ratings:  {councilor.avg_ratings}</h4>
           </div>
         ))}
