@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logout from "../pages/Logout";
 import '../App.css';
 
 
-function NavBar({ isAuthenticated }) {
+function NavBar({ isAuthenticated, setIsAuthenticated }) {
   
   const User = sessionStorage.getItem('User');
   
@@ -12,7 +13,12 @@ function NavBar({ isAuthenticated }) {
     <nav className="navbar">
       <ul className="navbar-nav-left">
         <li className="nav-item"><Link to="/">Home</Link></li>
-        <li className="nav-item"><Link to="/contact">Contact Us</Link></li>
+        <li className="nav-item"><Link to="/report">Public Perspective</Link></li>
+        {isAuthenticated ? (
+          <>
+            <li className="nav-item"><Link to="/contact">Your Voice Matters</Link></li>
+          </>
+        ) : null}
       </ul>
       <ul className="navbar-nav-right">
         <li className="nav-item"><Link to="/my-councilor">My Councilor</Link></li>
@@ -20,7 +26,7 @@ function NavBar({ isAuthenticated }) {
           <>
             <li className="nav-item"><Link to="/my-profile">My Profile</Link></li>
             <li className="nav-item"><span>{User}</span></li>
-            <li className="nav-item"><Link to="/logout">Logout</Link></li>
+            <li className="nav-item"><Link to="/signup">Logout</Link></li>
           </>
         ) : (
           <>
