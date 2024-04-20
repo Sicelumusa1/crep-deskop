@@ -13,7 +13,7 @@ const RatingForm = ({ councilorId }) => {
 
 useEffect(() => {
   // Fetch services from bachend
-  axios.get('https://crep-9988a4a400d8.herokuapp.com/crep/services/')
+  axios.get('http://127.0.0.1:8000/crep/services/')
     .then(response => setServices(response.data))
     .catch(error => console.error('Error fetching services:', error))
 }, []);
@@ -50,18 +50,29 @@ const handleSubmit = () => {
   };
 
   // Get the JWT access token
-  const accessToken = sessionStorage.getItem('accessToken');
+  // const accessToken = sessionStorage.getItem('accessToken');
   
   // Set the Authorization header with the token
-  const headers = {
-    Authorization: `Bearer ${accessToken}`,
-    'Content-Type': 'application/json',
-  };
+  // const headers = {
+  //   Authorization: `Bearer ${accessToken}`,
+  //   'Content-Type': 'application/json',
+  // };
 
   // Send a post request to backend
-  axios.post(`https://crep-9988a4a400d8.herokuapp.com/crep/councilors/${councilorId}/rate_councilor/`, data, { headers })
+  console.log("request Data:", data)
+  axios.post(
+    `http://127.0.0.1:8000/crep/councilors/${councilorId}/rate_councilor/`, 
+    data,
+     {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+      } 
+    }
+  )
     .then((response) => {
       // Successful submission
+      console.log("Response Data:", response.data)
       console.log("Rating submited successfully:", response.data);
       setMessage('Rating submited successfully');
       setMessageClass('success-message');

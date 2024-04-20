@@ -19,7 +19,7 @@ const councilorInfo = selectedCouncilor[0];
         {selectedMunicipalityName && <h4>Municipality:  {selectedMunicipalityName} </h4>}
         <h4>Ward:  {councilorInfo.ward_number}</h4>
         <h4>Name:  {councilorInfo.names} {councilorInfo.surname}</h4>
-        <h4>Councilor Affiliation:  {councilorInfo.affiliation}</h4>
+        {/* <h4>Councilor Affiliation:  {councilorInfo.affiliation}</h4> */}
         <h4>Number of Ratings:  {councilorInfo.no_of_ratings}</h4>
         <h4>Average Ratings:  {councilorInfo.avg_ratings}</h4>
 
