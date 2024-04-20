@@ -1,11 +1,11 @@
 html {
-  background-color: #63848a;
+  background-color: #19191a;
 }
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #63848a;
+  background-color: #19191a;
   position: relative;
   /* height: 100vh; */
   width: 100%;
@@ -20,14 +20,14 @@ html {
   top: 0;
   width: 100%;
   font-size: calc(10px + 1vmin);
-  background-color: #1e3327;
+  background-color: #244057;
   z-index: 1;
 }
 
 .App-footer {
   text-align: center;
   font-size: calc(10px + 1vmin);
-  background-color: #1e3327;
+  background-color: #244057;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -52,10 +52,10 @@ nav.navbar {
   width: 100%;
   position: fixed;
   /* background-color: #63848a; */
-  background-color: #121815;
+  background-color: #19191a;
   padding: 1rem;
   z-index: 1;
-  top: 10.7%;
+  top: 11.3%;
 }
 
 .OTP {
@@ -137,10 +137,10 @@ span {
 .worst-councilors {
   width: 40%;
   margin: 0px 40px;
-  border: 1px solid  #1e3327;
+  border: 1px solid #242321;
 }
 .best-councilors {
-  color: #1e3327;
+  color: #1e683e;
 }
 .worst-councilors {
   color:darkred
@@ -148,13 +148,16 @@ span {
 .councilor-item {
   margin: 0px;
   text-align: center;
+  background-color: #242321;
 }
+
 .user-Edu {
-  display: flex;
-  justify-content: space-around;
+  /* display: flex;
+  justify-content: space-around; */
   width: 100%;
-  text-align: center;
-  margin-bottom: 40px;
+  align-items: stretch;
+  margin-bottom: 100px;
+  height: auto;
 }
 .eduHeader h2 {
   margin: 0;
@@ -177,29 +180,45 @@ span {
   margin: 5px;
   opacity: 0.35;
 }
-.card-1,
-.card-2,
-.card-3 {  
-  background-size: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #121815;
-  color: #fff;
+.card {  
+  background-color: #333232;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   flex-wrap: wrap;
-  flex: 0 0 25%;
+}
+.card h2 {
+  margin: 5px 0;
+}
+.card ul {
+  list-style: disc;
+}
+.card ul li h6 {
+  margin: 5px 0;
+  text-align: left;
+}
+.card img {
+  max-height: 200px;
+  max-width: 400px;
 }
 
-.card-text {
-  padding: 10px;
-  margin: 0;
-  text-align: start;
+/* Citizen-Stories page styling */
+.stories-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 13%;
 }
 
 /* MyCouncilor page styling*/
 .councilor-info .dropdowns {
   display: flex;
-  /* flex-direction: column; */
-  margin-top: 15%;
-  /* height: 100vh; */
+  margin-top: 11%;
   justify-content: center;
   align-items: center;
 }
@@ -218,7 +237,7 @@ span {
 }
 
 .councilor-details {
-  background-color: #121815;
+  background-color: #242321;
   width: 50%;
   margin-bottom: 50px;
 }
@@ -247,6 +266,9 @@ span {
   display: flex;
   align-items: center;
 }
+.rate h3 {
+  margin: 10px 0;
+}
 .rate::before, 
 .rate::after {
   flex: 1;
@@ -258,10 +280,12 @@ span {
 .rating-form h5 {
   text-align: center;
   color: aquamarine;
+  margin: 0;
 }
 
-h3 {
-  line-height: 20px;
+h3,
+h4 {
+  line-height: 10px 20px;
 }
 .stars {
   margin-bottom: 10px;
@@ -276,12 +300,13 @@ h3 {
 }
 
 .detail-info h4 {
-  margin: 16px;
+  margin: 10px 16px;
 }
 
 table {
-  border: 1px solid #121815;
+  border: 1px solid #404646;
   margin-bottom: 50px;
+  background-color: #242321;
 }
 
 .table h3 {
@@ -290,7 +315,7 @@ table {
 
 table th,
 table td {
-  border: 1px solid #121815;
+  border: 1px solid #404646;
 }
 
 .province-list {
@@ -345,15 +370,14 @@ button {
 /* Contact form styling */
 .contact-us {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
 }
-
-.contact-us form textarea {
-  margin-bottom: 20px;
-  width: 50%;
+.contact-us h3 {
+  margin-top: 0;
 }
 .contact-us form {
   display: flex;
@@ -361,6 +385,19 @@ button {
   width: 100%;
   align-items: center;
 }
+.contact-us form textarea {
+  margin-bottom: 20px;
+  width: 50%;
+}
+.contact-us .dropdowns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
 
 /* Signup styling */
 .signup {
@@ -374,7 +411,7 @@ button {
 
 .signup h2 {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 11%;
 }
 
 .signup form {
@@ -382,6 +419,7 @@ button {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  margin-bottom: 4%;
 }
 
 .signup form .dropdowns {
@@ -392,7 +430,8 @@ button {
   margin-bottom: 20px;
   width: 100%;
 }
-.signup form select {
+.signup form select,
+.contact-us form select {
   margin: 6px 4px;
 }
 
@@ -401,3 +440,9 @@ ul {
   text-align: center;
 }
 
+/* Perspectives page styling */
+.perspective {
+  width: 100%;
+  margin: 0px 40px;
+  background-color: 1px solid #242321;
+}
