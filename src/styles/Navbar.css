@@ -1,0 +1,44 @@
+/* Navigation bar styling */
+nav.navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  position: fixed;
+  /* background-color: #63848a; */
+  background-color: #19191a;
+  padding: 1rem;
+  z-index: 100;
+  top: 10.3%;
+}
+.navbar-nav-left .nav-item {
+  margin-right: 1rem;
+}
+
+.navbar-nav-right .nav-item:last-child {
+  border-left: 1px solid #ccc;
+  padding-left: 1rem;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+span {
+  color: #63848a;
+}

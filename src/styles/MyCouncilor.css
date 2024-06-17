@@ -1,0 +1,121 @@
+/* MyCouncilor page styling*/
+.councilor-info .dropdowns {
+  display: flex;
+  margin-top: 11%;
+  justify-content: center;
+  align-items: center;
+}
+
+.councilor-selector {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  width: 50%;
+}
+
+.councilor-info select {
+  margin: 20px;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.councilor-details {
+  background-color: #242321;
+  width: 50%;
+  margin-bottom: 50px;
+}
+
+.rating-form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.success-message {
+  z-index: 1;
+  color: aquamarine;
+  padding: 10px;
+}
+.error-message {
+  z-index: 1;
+  color: rgb(209, 23, 23);
+  padding: 10px;
+}
+
+
+.rate {
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+.rate h3 {
+  margin: 10px 0;
+}
+.rate::before, 
+.rate::after {
+  flex: 1;
+  content: '';
+  padding: 3px;
+  border-top: 1px solid rgb(236, 230, 230);
+  opacity: 0.35;
+}
+.rating-form h5 {
+  text-align: center;
+  color: aquamarine;
+  margin: 0;
+}
+
+h3,
+h4 {
+  line-height: 10px 20px;
+}
+.stars {
+  margin-bottom: 10px;
+}
+.rating-form textarea {
+  margin-bottom: 10px;
+  width: 50%;
+}
+.detail-info {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-info h4 {
+  margin: 10px 16px;
+}
+
+table {
+  border: 1px solid #404646;
+  margin-bottom: 50px;
+  background-color: #242321;
+}
+
+.table h3 {
+  text-align: center;
+}
+
+table th,
+table td {
+  border: 1px solid #404646;
+}
+
+.province-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.province-list ul,
+.municipality-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+.province-list h3,
+.municipality-list h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}

@@ -1,0 +1,56 @@
+/* Citizen-Stories page styling */
+.stories-container {
+  height: 100%;
+  margin-bottom: 5%;
+  padding: 0 30px;
+  width: 95%;
+  overflow: hidden;
+
+  /* display: flex; 
+  flex-direction: column;
+  align-items: center; */
+  margin-top: 13%;
+}
+.stories-container .mySwiper {
+  height: 450px;
+  overflow: hidden;
+}
+
+.stories-container .swiper {
+  width: 100%;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.stories-container .swiper-wrapper {
+ height: 100%;
+ width: 100%;
+}
+.grid .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #918f8f;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  height: calc((100% - 30px) / 2) !important;
+  
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backButton {
+  background-color: rgb(56, 56, 105);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+}
+.grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
