@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Signup.css'
+import '../styles/Signup.css';
+import { axiosInstance } from '../axiosConfig'
+import { signup } from '../services/AuthService';
+import {
+  getProvince,
+  getMunicipality,
+  getWard,
+  getCouncilor,
+} from '../services/MyCouncilorService';
 
 
 const Signup = ({ isRegistered, setIsRegistered }) => {
@@ -31,8 +38,8 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
 
   const fetchProvinces = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/crep/provinces/');
-      setProvinces(response.data);
+      const data = await getProvince();
+      setProvinces(data);
     } catch (error) {
       console.error('Error fetching provinces:', error);
     }
@@ -43,8 +50,8 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setProvince(selectedProvince);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvince}/municipalities/`);
-      setMunicipalities(response.data);
+      const data = await getMunicipality(selectedProvince);
+      setMunicipalities(data);
     } catch (error) {
       console.error('Error fetching municipalities:', error);
     }
@@ -54,8 +61,8 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setMunicipality(selectedMunicipality);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipality}/wards/`);
-      setWards(response.data);
+      const data = await getWard(selectedMunicipality);
+      setWards(data);
     } catch (error) {
       console.error('Error fetching wards:', error);
     }
@@ -66,8 +73,8 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setWard(selectedWard);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWard}/councilors/`)
-      setCouncilors(response.data);
+      const data = await getCouncilor(selectedWard);
+      setCouncilors(data);
     } catch (error) {
       console.error('Error fetching councilors:', error);
     }
@@ -76,7 +83,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
 // Function to resolve ward number into ward ID
 const resolveWardId = async (selectedWardNumber) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWardNumber}`);
+    const response = await axiosInstance(`crep/wards/${selectedWardNumber}`);
     return response.data[0].id;
   } catch (error) {
     console.error('Error resolving ward number:', error);
@@ -95,7 +102,7 @@ const resolveWardId = async (selectedWardNumber) => {
       
     // Send registration data to backend
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/signup/', {
+      const response = await signup({
       email,
       password,
       password2,
@@ -141,7 +148,7 @@ const resolveWardId = async (selectedWardNumber) => {
         <input type='text' value={first_name} onChange={(e) => setFirst_name(e.target.value)} required placeholder='Your Firstname' />
         <input type='text' value={last_name} onChange={(e) => setLast_name(e.target.value)} required placeholder='Your Lastname' />
         <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required placeholder='Known As' />
-        <input type='text' value={section_or_area} onChange={(e) => setSection_or_area(e.target.value)} required placeholder='Your Section or area of residence'  />
+        <input type='text' value={section_or_area} onChange={(e) => setSection_or_area(e.target.value)} required placeholder='Your Section or area of residence' />
         <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required placeholder='Valid Email Address' />
         <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required placeholder='Choose A Strong Password' />
         <input type='password' value={password2} onChange={(e) => setPassword2(e.target.value)} required placeholder='Confirm Your Password' />
