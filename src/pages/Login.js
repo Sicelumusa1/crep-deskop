@@ -20,7 +20,7 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      await axiosInstance.post('login/', JSON.stringify({ email, password }));
+      await axiosInstance.post('api/v1/auth/login', JSON.stringify({ email, password }));
 
       // Indicate that the user is authenticated and redirect to mycouncilor page
       setIsAuthenticated(true);      

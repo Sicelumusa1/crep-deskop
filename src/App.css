@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #19191a;
+  background-color: #669BBC;
   position: relative;
   
   height: 100%;
@@ -11,7 +11,7 @@
 } 
 html,
 body {
-  background-color: #19191a;
+  background-color: #669BBC;
   position: relative;
   height: 100%;
 }
@@ -24,7 +24,7 @@ body {
   top: 0;
   width: 100%;
   font-size: calc(10px + 1vmin);
-  background-color: #244057;
+  background-color: #003049;
   z-index: 100;
 }
 .App-header h2 {
@@ -47,7 +47,7 @@ p {
 .App-footer {
   text-align: center;
   font-size: calc(10px + 1vmin);
-  background-color: #244057;
+  background-color: #003049;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -63,7 +63,7 @@ p {
   width: 100%;
   height: 100vh;
   margin-top: 0;
-  background-color: #63848a;
+  background-color: #669BBC;
 }
 .OTP form {
   display: flex;

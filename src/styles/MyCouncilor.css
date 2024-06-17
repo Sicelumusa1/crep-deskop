@@ -6,6 +6,13 @@
   align-items: center;
 }
 
+.councilor-info .dropdowns div select {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #fdf0d5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
 .councilor-selector {
   display: flex;
   justify-content: center;
@@ -20,9 +27,13 @@
 }
 
 .councilor-details {
-  background-color: #242321;
+  /* background-color: #63848a; */
+  background-color: #fdf0d5;
+  color: black;
   width: 50%;
   margin-bottom: 50px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .rating-form {
@@ -32,14 +43,31 @@
   justify-content: center;
   align-items: center;
 }
+
+.rating-form select, 
+.rating-form textarea {
+  background-color: #fdf0d5;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.rating-form button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #003049;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
 .success-message {
   z-index: 1;
-  color: aquamarine;
+  color: #0a9396;
   padding: 10px;
 }
 .error-message {
   z-index: 1;
-  color: rgb(209, 23, 23);
+  color: #c1121f;
   padding: 10px;
 }
 
@@ -57,12 +85,13 @@
   flex: 1;
   content: '';
   padding: 3px;
-  border-top: 1px solid rgb(236, 230, 230);
-  opacity: 0.35;
+  border-top: 1px solid rgb(0, 0, 0);
+  opacity: 0.7;
 }
 .rating-form h5 {
   text-align: center;
-  color: aquamarine;
+  color: black;
+  opacity: 0.7;
   margin: 0;
 }
 
@@ -75,6 +104,7 @@ h4 {
 }
 .rating-form textarea {
   margin-bottom: 10px;
+  padding: 10px;
   width: 50%;
 }
 .detail-info {
@@ -89,7 +119,7 @@ h4 {
 table {
   border: 1px solid #404646;
   margin-bottom: 50px;
-  background-color: #242321;
+  background-color: #63848a;
 }
 
 .table h3 {

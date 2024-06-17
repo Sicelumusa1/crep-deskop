@@ -29,8 +29,9 @@
 .grid .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #918f8f;
+  background-color: #fdf0d5;
   border-radius: 10px;
+  color: black;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   height: calc((100% - 30px) / 2) !important;
@@ -42,10 +43,13 @@
 }
 
 .backButton {
-  background-color: rgb(56, 56, 105);
-  border-radius: 8px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #003049;
+  color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  margin-bottom: 15px;
+  margin: 30px 0;
+  cursor: pointer;
 }
 .grid {
   display: flex;

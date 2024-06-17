@@ -129,7 +129,7 @@ return (
               key={index}
               icon={faStar}
               onClick={() => handleRatingChange(index + 1)}
-              style={{ color: index < rating ? 'gold' : 'grey', cursor: 'pointer' }}
+              style={{ color: index < rating ? '#0a9396' : 'grey', cursor: 'pointer' }}
             />
           ))}
         </div>
