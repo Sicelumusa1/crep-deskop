@@ -2,7 +2,7 @@ import React from 'react';
 import BestCouncilors from '../components/BestCouncilors';
 import WorstCouncilors from '../components/WorstCouncilors';
 import UserEdu from '../components/UserEdu';
-import '../App.css';
+import '../styles/Home.css';
 
 
 function Home() {

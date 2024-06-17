@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import '../styles/Login.css';
+import { axiosInstance } from '../axiosConfig';
 
 const Login = ({setIsAuthenticated}) => {
   const [email, setEmail] = useState('');
@@ -20,20 +20,11 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      const response = await axios.post('https://crep-9988a4a400d8.herokuapp.com/api/v1/auth/login/', { email, password });
-      // If authentication is successful, redirect to "My Councilor" page
-      // console.log(response.data)
-      const {access_token, full_name, refresh_token} = response.data
-        // Store tokens in sessionStorage
-        sessionStorage.setItem('accessToken', access_token);
-        sessionStorage.setItem('refreshToken', refresh_token);
-        sessionStorage.setItem('User', full_name);
-        console.log(full_name)
+      await axiosInstance.post('login/', JSON.stringify({ email, password }));
 
-        setIsAuthenticated(true);
-
-        // Redirect to "My Councolor" page
-        navigate('/my-councilor');
+      // Indicate that the user is authenticated and redirect to mycouncilor page
+      setIsAuthenticated(true);      
+      navigate('/my-councilor');
       
     } catch (error) {
       console.error('Login failed:', error);

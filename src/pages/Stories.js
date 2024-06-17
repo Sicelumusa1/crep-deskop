@@ -1,11 +1,11 @@
 import React from 'react';
 import CitizenStories from '../components/CitizenStories';
-import '../App.css';
+import '../styles/Perspectives.css';
 
 
 function Stories() {
   return (
-        <div className='stories-container'>
+      <div className='stories-container'>
             <CitizenStories />
       </div>
   );

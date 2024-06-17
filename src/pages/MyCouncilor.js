@@ -4,7 +4,7 @@ import MyProvince from "../components/MyProvince";
 import MyMunicipality from "../components/MyMunicipality";
 import MyWard from "../components/MyWard";
 import CouncilorInfo from "../components/Councilor";
-import '../App.css';
+import '../styles/MyCouncilor.css';
 import CouncilorTable from "../components/CouncilorTable";
 
 
