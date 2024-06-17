@@ -1,62 +1,54 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import LocationSwiper from './LocationSwiper'
 
 const CitizenStories = () => {
-  const [councilors, setCouncilors] = useState([]);
+  
+  const [selectedWard, setSelectedWard] = useState(null);
+  const [perspectives, setPerspectives] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const settings = {
-    // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    responsive: [
-      {
-        breakepoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
+  const fetchPerspectives = (ward) => {
+    setLoading(true);
+    axios
+      .get(`http://127.0.0.1:8000/crep/perspectives/?ward=${ward}`)
+      .then((response) => {
+        setPerspectives(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching perspectives:', error);
+        setLoading(false);
+      });
   };
 
-  useEffect(() => {
-    const fetchCouncilors = async () => {
-      try {
-        // Fetch data from backend
-        const response = await fetch(`http://127.0.0.1:8000/crep/councilors/?rating_type=best`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await response.json();
-        setCouncilors(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchCouncilors();
-  }, []);
-
+  const handleWardSelect = (ward) => {
+    setSelectedWard(ward);
+    fetchPerspectives(ward);
+  };
+  
   return (
-    <div className="perspective">
-      <h2>Best Rated Councilors</h2>
-      <Slider {...settings}>
-        {councilors.map((councilor) => (
-          <div key={councilor.id} className="councilor-item">
-            <h4>Name:  {councilor.names} {councilor.surname}</h4>
-            {/* {selectedProvinceName && <h4>Province:  {selectedProvinceName} </h4>}
-        {selectedMunicipalityName && <h4>Municipality:  {selectedMunicipalityName} </h4>} */}
-        <h4>Ward:  {councilor.ward_number}</h4>
-        <h4>Average Ratings:  {councilor.avg_ratings}</h4>
-          </div>
-        ))}
-      </Slider>
+    <div>
+      {selectedWard === null ? (
+        <LocationSwiper onSelectWard={handleWardSelect} />
+      ) : (
+        <div>
+          <h2>perspectives in {selectedWard}</h2>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <ul>
+              {perspectives.map((perspective) => (
+                <li key={perspective.id}>
+                  <h3>{perspective.title}</h3>
+                  <p>{perspective.description}</p>
+                </li>
+              ))}
+            </ul>
+          )}
     </div>
+  )}
+</div>
   );
-};
-
+};  
 export default CitizenStories;
