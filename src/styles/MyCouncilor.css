@@ -11,6 +11,7 @@
   border-radius: 10px;
   background-color: #fdf0d5;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .councilor-selector {
@@ -24,6 +25,7 @@
   margin: 20px;
   line-height: 1.5;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .councilor-details {
@@ -50,6 +52,7 @@
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 .rating-form button {
   padding: 5px;
@@ -77,7 +80,7 @@
   display: flex;
   align-items: center;
 }
-.rate h3 {
+.rate h4 {
   margin: 10px 0;
 }
 .rate::before, 
@@ -147,5 +150,12 @@ table td {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0;
+}
+.municipality-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-bottom: 0;
 }
