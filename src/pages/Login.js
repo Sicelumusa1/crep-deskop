@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { LoginService } from '../services/AuthService';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/Login.css';
-import { axiosInstance } from '../axiosConfig';
 
 const Login = ({setIsAuthenticated}) => {
   const [email, setEmail] = useState('');
@@ -20,10 +20,10 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      await axiosInstance.post('api/v1/auth/login', JSON.stringify({ email, password }));
-
-      // Indicate that the user is authenticated and redirect to mycouncilor page
-      setIsAuthenticated(true);      
+      LoginService(email, password);
+      
+      setIsAuthenticated(true);
+      // Redirect to "My Councolor" page
       navigate('/my-councilor');
       
     } catch (error) {
@@ -38,6 +38,7 @@ const Login = ({setIsAuthenticated}) => {
         <input type='email' placeholder='Enter Your Email Address' value={email} onChange={handleEmailChange} required />
         <input type='password' placeholder='Enter Your Password' value={password} onChange={handlePasswordChange} required />
         <button type='submit'>Login</button>
+        <p>Already have an account ? <Link to="/signup">Register</Link></p>
       </form>
     </div>
   );

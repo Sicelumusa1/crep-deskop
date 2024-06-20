@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Signup.css';
-import { axiosInstance } from '../axiosConfig'
-import { signup } from '../services/AuthService';
-import {
-  getProvince,
-  getMunicipality,
-  getWard,
-  getCouncilor,
-} from '../services/MyCouncilorService';
-
+import { axiosInstance } from '../axiosConfig';
+import { useNavigate, Link } from 'react-router-dom';
+import { getProvince, getMunicipality, getWard, getCouncilor } from '../services/MyCouncilorService';
+import '../styles/Signup.css'
 
 const Signup = ({ isRegistered, setIsRegistered }) => {
   // State variables for the form
@@ -73,7 +66,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
     setWard(selectedWard);
 
     try {
-      const data = await getCouncilor(selectedWard);
+      const data = await getCouncilor (selectedWard)
       setCouncilors(data);
     } catch (error) {
       console.error('Error fetching councilors:', error);
@@ -83,7 +76,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
 // Function to resolve ward number into ward ID
 const resolveWardId = async (selectedWardNumber) => {
   try {
-    const response = await axiosInstance(`crep/wards/${selectedWardNumber}`);
+    const response = await axiosInstance.get(`crep/wards/${selectedWardNumber}`);
     return response.data[0].id;
   } catch (error) {
     console.error('Error resolving ward number:', error);
@@ -102,7 +95,7 @@ const resolveWardId = async (selectedWardNumber) => {
       
     // Send registration data to backend
     try {
-      const response = await signup({
+      const response = await axiosInstance.post('auth/signup/', {
       email,
       password,
       password2,
@@ -145,27 +138,36 @@ const resolveWardId = async (selectedWardNumber) => {
     <div className='signup'>
       <h2>Register For Free</h2>
       <form onSubmit={handleSubmit}>
-        <input type='text' value={first_name} onChange={(e) => setFirst_name(e.target.value)} required placeholder='Your Firstname' />
-        <input type='text' value={last_name} onChange={(e) => setLast_name(e.target.value)} required placeholder='Your Lastname' />
-        <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required placeholder='Known As' />
-        <input type='text' value={section_or_area} onChange={(e) => setSection_or_area(e.target.value)} required placeholder='Your Section or area of residence' />
         <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required placeholder='Valid Email Address' />
-        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required placeholder='Choose A Strong Password' />
-        <input type='password' value={password2} onChange={(e) => setPassword2(e.target.value)} required placeholder='Confirm Your Password' />
+        <div>
+          <input type='text' value={first_name} onChange={(e) => setFirst_name(e.target.value)} required placeholder='Your Firstname' />
+          <input type='text' value={last_name} onChange={(e) => setLast_name(e.target.value)} required placeholder='Your Lastname' />
+        </div>
+        <div>
+          <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required placeholder='Known As' />
+          <input type='text' value={section_or_area} onChange={(e) => setSection_or_area(e.target.value)} required placeholder='Your Section or area of residence' />
+        </div>
+        <div>
+          <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required placeholder='Choose A Strong Password' />
+          <input type='password' value={password2} onChange={(e) => setPassword2(e.target.value)} required placeholder='Confirm Your Password' />
+        </div>
         <div className='dropdowns'>
-          <select value={province} onChange={(e) => handleProvinceChange(e.target.value)} required>
-            <option value=''>Select Province</option>
-            {provinces.map((prov) => (
-              <option key={prov.id} value={prov.id}>{prov.name}</option>
-            ))}
-          </select>
-          <select value={municipality} onChange={(e) => handleMunicipalityChange(e.target.value)} required>
-            <option value=''>Select Municipality</option>
-            {municipalities.map((muni) => (
-              <option key={muni.id} value={muni.id}>{muni.name}</option>
-            ))}
+          <div>
+            <select value={province} onChange={(e) => handleProvinceChange(e.target.value)} required>
+              <option value=''>Select Province</option>
+              {provinces.map((prov) => (
+                <option key={prov.id} value={prov.id}>{prov.name}</option>
+              ))}
             </select>
-            <select value={ward} onChange={(e) => handleWardChange(e.target.value)} required>
+            <select value={municipality} onChange={(e) => handleMunicipalityChange(e.target.value)} required>
+              <option value=''>Select Municipality</option>
+              {municipalities.map((muni) => (
+                <option key={muni.id} value={muni.id}>{muni.name}</option>
+              ))}
+              </select>
+          </div>
+          <div>
+          <select value={ward} onChange={(e) => handleWardChange(e.target.value)} required>
               <option value=''>Select Ward</option>
               {wards.map((w) => (
                 <option key={w.ward_number} value={w.ward_number}>{w.ward_number}</option>
@@ -177,9 +179,11 @@ const resolveWardId = async (selectedWardNumber) => {
                 <option key={c.id} value={c.id}>{c.names}</option>
               ))}
             </select>
+          </div>
         </div>
         
         <button type='submit'>Register</button>
+        <p>Already have an account ? <Link to="/login">Login</Link></p>
       </form>
     </div>
   );
