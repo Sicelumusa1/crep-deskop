@@ -51,7 +51,7 @@ const LocationSwiper = ({ onSelectWard }) => {
         </Swiper>
       ) : selectedMunicipality === null ? (
         <Swiper
-          slidesPerView={6}
+          slidesPerView={4}
           grid={{ rows: 2, fill: 'row'}}
           spaceBetween={30}
           pagination={{ clickable: true }}
@@ -66,7 +66,7 @@ const LocationSwiper = ({ onSelectWard }) => {
         </Swiper>
       ) : (
         <Swiper
-          slidesPerView={6}
+          slidesPerView={4}
           grid={{ rows: 2, fill: 'row'}}
           spaceBetween={30}
           pagination={{ clickable: true }}
