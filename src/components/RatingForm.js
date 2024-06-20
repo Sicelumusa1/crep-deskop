@@ -12,7 +12,7 @@ const RatingForm = ({ councilorId }) => {
   const [messageClass, setMessageClass] = useState('');
 
 useEffect(() => {
-  // Fetch services from bachend
+  // Fetch services from backend
   axios.get('http://127.0.0.1:8000/crep/services/')
     .then(response => setServices(response.data))
     .catch(error => console.error('Error fetching services:', error))
@@ -48,16 +48,7 @@ const handleSubmit = () => {
     stars: rating,
     feedback: feedback,
   };
-
-  // Get the JWT access token
-  // const accessToken = sessionStorage.getItem('accessToken');
   
-  // Set the Authorization header with the token
-  // const headers = {
-  //   Authorization: `Bearer ${accessToken}`,
-  //   'Content-Type': 'application/json',
-  // };
-
   // Send a post request to backend
   console.log("request Data:", data)
   axios.post(
@@ -67,7 +58,7 @@ const handleSubmit = () => {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
-      } 
+      }
     }
   )
     .then((response) => {
@@ -115,7 +106,7 @@ const handleSubmit = () => {
 
 return (
     <div className="rating-form">
-        <div className="rate"><h3 >Rate This Councilor</h3></div>
+        <div className="rate"><h4 >Rate This Councilor</h4></div>
         <h5 className="rating-constraint">Please note that you can only rate them if they represent your ward</h5>
         <select value={selectedService} onChange={handleServiceChange}>
           <option value=''>Select a service</option>
