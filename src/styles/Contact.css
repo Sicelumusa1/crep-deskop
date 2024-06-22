@@ -5,20 +5,30 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  
 }
 .contact-us h3 {
-  margin-top: 0;
+  margin: 10px 0;
 }
 .contact-us form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 35%;
   align-items: center;
+  background-color: #fdf0d5;
+  color: black;
+  margin-bottom: 70px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);;
+
 }
 .contact-us form textarea {
-  margin-bottom: 20px;
-  width: 50%;
+  background-color: #fdf0d5;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: 80%;
 }
 .contact-us .dropdowns {
   display: flex;
@@ -27,4 +37,16 @@
   flex-wrap: wrap;
   margin-bottom: 20px;
   width: 100%;
+}
+
+button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #003049;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease;
 }

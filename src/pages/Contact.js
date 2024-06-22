@@ -86,8 +86,8 @@ const Contact = () => {
 
   return (
     <div className='contact-us'>
-      <h2>Proud of your councilor? Or fedup of poor service delivery?</h2>
-      <h3>Tell the world</h3>
+      <h3>Share Your Feedback</h3>
+      <h3>Praise Excellence or Report Issues</h3>
       <form onSubmit={handleSubmit}>
         <div className='dropdowns'>
             <select value={province} onChange={(e) => handleProvinceChange(e.target.value)} required>

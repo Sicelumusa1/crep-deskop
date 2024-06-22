@@ -1,7 +1,11 @@
 /* MyCouncilor page styling*/
+.councilor-info {
+  padding-top: 80px;
+}
+
 .councilor-info .dropdowns {
   display: flex;
-  margin-top: 11%;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -12,6 +16,7 @@
   background-color: #fdf0d5;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  margin: 10px;
 }
 
 .councilor-selector {
