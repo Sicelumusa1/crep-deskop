@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
+// import axios from "axios";
+import { axiosInstance } from '../axiosConfig';
 
 const CouncilorTable = ({ selectedMunicipality }) => {
 const [wards, setWards] = useState([]);   
@@ -10,7 +10,7 @@ const [councilors, setCouncilors] = useState([]);
 
 useEffect(() => {
       // Fetch wards for the selected municipality
-  axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipality}/wards/`)
+    axiosInstance.get(`crep/municipalities/${selectedMunicipality}/wards/`)
     .then((response) => {
       setWards(response.data);
     })
@@ -21,7 +21,7 @@ useEffect(() => {
   // Fetch councilors for each ward
   const fetchCouncilors = async () => {
     const councilorsData = await Promise.all(wards.map(async (ward) => {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${ward.ward_number}/councilors`);
+      const response = await axiosInstance.get(`crep/wards/${ward.ward_number}/councilors`);
       return response.data;
     }));
     const flatCouncilorsData = councilorsData.flat();
