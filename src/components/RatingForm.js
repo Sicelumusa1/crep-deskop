@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import { axiosInstance } from '../axiosConfig';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,7 +13,7 @@ const RatingForm = ({ councilorId }) => {
 
 useEffect(() => {
   // Fetch services from backend
-  axios.get('http://127.0.0.1:8000/crep/services/')
+  axiosInstance.get('crep/services/')
     .then(response => setServices(response.data))
     .catch(error => console.error('Error fetching services:', error))
 }, []);
@@ -51,8 +51,8 @@ const handleSubmit = () => {
   
   // Send a post request to backend
   console.log("request Data:", data)
-  axios.post(
-    `http://127.0.0.1:8000/crep/councilors/${councilorId}/rate_councilor/`, 
+  axiosInstance.post(
+    `crep/councilors/${councilorId}/rate_councilor/`, 
     data,
      {
       withCredentials: true,

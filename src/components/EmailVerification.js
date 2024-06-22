@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
@@ -16,7 +16,7 @@ const EmailVerification = ({isVerified, setIsVerified}) => {
     e.preventDefault();
     try {
       // call backend API
-      const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/verify_email/', { otp });
+      const response = await axiosInstance.post('auth/verify_email/', { otp });
       // If verification is successful, navigate to login page
       if (response.data) {
         setVerOutcome(true);
