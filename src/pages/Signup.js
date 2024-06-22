@@ -18,6 +18,8 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
   const [ward, setWard] = useState('');
   const [councilor, setCouncilor] = useState('');
   const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [messageClass, setMessageClass] = useState('');
 
   // State variables for dropdown options
   const [provinces, setProvinces] = useState([]);
@@ -89,7 +91,13 @@ const resolveWardId = async (selectedWardNumber) => {
     e.preventDefault();
     // Check if passwords match
     if (password !== password2) {
-      console.error('Passwords do not match');
+      // console.error('Passwords do not match');
+      setMessage("Passwords do not match");
+      setMessageClass('error-message');
+      setTimeout(() => {
+        setMessage('');
+        setMessageClass('');
+      }, 5000);
       return;
     }
       
@@ -113,6 +121,12 @@ const resolveWardId = async (selectedWardNumber) => {
       }
     });
       console.log('Registration successful:', response.data);
+      setMessage("Registration successful. We emailed you an OTP to verify your account");
+      setMessageClass('success-message');
+      setTimeout(() => {
+        setMessage('');
+        setMessageClass('');
+      }, 5000);
       // Redirect to OTP verification page after successful registration
       navigate('/otp-verification');
 
@@ -131,6 +145,14 @@ const resolveWardId = async (selectedWardNumber) => {
       setIsRegistered(true)
     } catch (error) {
       console.error('Registration failed:', error);
+      if (error.response && error.response.data && error.response.data.message) {
+        setMessage(error.response.data.message);
+      }
+      setMessageClass('error-message');
+      setTimeout(() => {
+        setMessage('');
+        setMessageClass('');
+      }, 5000);
     }
   };
 
@@ -183,6 +205,7 @@ const resolveWardId = async (selectedWardNumber) => {
         </div>
         
         <button type='submit'>Register</button>
+        {message && <div className={`message ${messageClass}`}>{message}</div>}
         <p>Already have an account ? <Link to="/login">Login</Link></p>
       </form>
     </div>
