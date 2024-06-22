@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import '../styles/Navbar.css';
 
 
-function NavBar({ isAuthenticated, setIsAuthenticated }) {
+function NavBar({ isAuthenticated, toggleHeaderContent }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const User = localStorage.getItem('User');
   
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    toggleHeaderContent();
   };
 
   const closeMenu = () => {

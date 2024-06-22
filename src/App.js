@@ -18,14 +18,20 @@ function App() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showHeaderContent, setShowHeaderContent] = useState(true);
 
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <h2>CREP</h2>
-          { <p>Community Rating and Empowerment Platform</p> }
-          <NavBar isAuthenticated={isAuthenticated} />
+          {showHeaderContent && (
+            <div className='header-content'>
+              <h2>CREP</h2>
+              <p>Community Rating and Empowerment Platform</p>
+            </div>
+          )}
+          
+          <NavBar isAuthenticated={isAuthenticated} toggleHeaderContent={() => setShowHeaderContent(prev => !prev)} />
         </header>
           
         <Routes>

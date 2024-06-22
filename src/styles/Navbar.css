@@ -43,7 +43,7 @@
   color: #0a9396;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 768px) {
   .menu-icon {
     display: block;
   }
