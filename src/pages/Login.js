@@ -38,7 +38,7 @@ const Login = ({setIsAuthenticated}) => {
         <input type='email' placeholder='Enter Your Email Address' value={email} onChange={handleEmailChange} required />
         <input type='password' placeholder='Enter Your Password' value={password} onChange={handlePasswordChange} required />
         <button type='submit'>Login</button>
-        <p>Already have an account ? <Link to="/signup">Register</Link></p>
+        <p>You don't have an account? <Link to="/signup">Register</Link></p>
       </form>
     </div>
   );
