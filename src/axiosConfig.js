@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base URL for the main application endpoints
-const CREP_URL = "http://127.0.0.1:8000/";
+const CREP_URL = "https://web-production-81ec5.up.railway.app/";
 
 // Axios for open access requests
 export const axiosInstance = axios.create(
