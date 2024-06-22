@@ -145,8 +145,14 @@ const resolveWardId = async (selectedWardNumber) => {
       setIsRegistered(true)
     } catch (error) {
       console.error('Registration failed:', error);
-      if (error.response && error.response.data && error.response.data.message) {
-        setMessage(error.response.data.message);
+      if (error.response && error.response.data) {
+        const errorData = error.response.data;
+        let errorMessages = '';
+
+        Object.keys(errorData).forEach((key) => {
+          errorMessages += `${key}: ${errorData[key].join(', ')}\n`;
+        });
+        setMessage(errorMessages);
       }
       setMessageClass('error-message');
       setTimeout(() => {
