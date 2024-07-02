@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LoginService } from '../services/AuthService';
+import axiosInstance from '../axiosConfig';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/Login.css';
 
@@ -20,8 +20,8 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      const response = await LoginService(email, password);
-      console.log(response);
+      const response = await axiosInstance.post('auth/login/', { email, password });
+      console.log('Full response:',response);
       const { access_token, refresh_token, full_name } = response;
 
       localStorage.setItem('access_token', access_token);
