@@ -20,7 +20,7 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      LoginService(email, password);
+      const response = await LoginService(email, password);
       const { access_token, refresh_token, full_name } = response.data;
 
       localStorage.setItem('access_token', access_token);
