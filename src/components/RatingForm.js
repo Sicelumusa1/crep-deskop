@@ -58,7 +58,7 @@ const handleSubmit = () => {
     `crep/councilors/${councilorId}/rate_councilor/`, 
     data,
      {
-      withCredentials: true,
+      withCredentials: false,
       headers: {
         'Authorization': `Bearer ${access_token}`,
         'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ const CREP_URL = "https://web-production-81ec5.up.railway.app/";
 export const axiosInstance = axios.create(
   {
     baseURL: CREP_URL,
-    withCredentials: true,
+    withCredentials: false,
     headers: {
       "Content-Type": "application/json"
     }
