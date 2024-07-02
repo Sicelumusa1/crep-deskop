@@ -48,6 +48,9 @@ const handleSubmit = () => {
     stars: rating,
     feedback: feedback,
   };
+
+  // Retrieve access token from localStorage
+  const access_token = localStorage.getItem('access_token');
   
   // Send a post request to backend
   console.log("request Data:", data)
@@ -57,6 +60,7 @@ const handleSubmit = () => {
      {
       withCredentials: true,
       headers: {
+        'Authorization': `Bearer ${access_token}`,
         'Content-Type': 'application/json',
       }
     }

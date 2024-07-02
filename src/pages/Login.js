@@ -21,6 +21,11 @@ const Login = ({setIsAuthenticated}) => {
     try {
       // Call backend API to authenticate user
       LoginService(email, password);
+      const { access_token, refresh_token, full_name } = response.data;
+
+      localStorage.setItem('access_token', access_token);
+      localStorage.setItem('refresh_token', refresh_token);
+      localStorage.setItem('full_name', full_name);
       
       setIsAuthenticated(true);
       // Redirect to "My Councolor" page
