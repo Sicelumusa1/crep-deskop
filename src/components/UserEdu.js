@@ -3,7 +3,7 @@ import '../styles/Home.css';
 
 const UserEdu = () => {
   return (
-    <div>Coming soon</div>
+    <div >User Education Video Goes Here</div>
   )
 }
 
