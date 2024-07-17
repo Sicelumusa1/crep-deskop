@@ -48,17 +48,7 @@ body {
 .navbar {
   flex-shrink: 0;
 }
-.App-footer {
-  text-align: center;
-  font-size: 12px;
-  position: fixed;
-  color: white;
-  background-color: #003049;
-  bottom: 0;
-  width: 100%;
-  padding: 5px;
-  z-index: 1;
-}
+
 
 .OTP {
   display: flex;

@@ -9,6 +9,7 @@ import MyCouncilor from './pages/MyCouncilor';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+
 import EmailVerification from './components/EmailVerification';
 import './App.css';
 import { useState } from 'react';
@@ -27,7 +28,7 @@ function App() {
           {showHeaderContent && (
             <div className='header-content'>
               <h2>CREP</h2>
-              <p>Community Rating and Empowerment Platform</p>
+              {/* <p>Community Rating and Empowerment Platform</p> */}
             </div>
           )}
           
@@ -45,10 +46,6 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path='/otp-verification' element={<EmailVerification  isVerified={isVerified} setIsVerified={setIsVerified} />} />
         </Routes>
-          
-        <footer className="App-footer">
-          <p>Trasparency is Key to African Economic Transformation and Poverty Alleviation</p>
-        </footer>
       </div>
     </Router>
   );
