@@ -39,7 +39,7 @@ function Home() {
                 </a>
               </div>
               <div className='twitter'>
-                <a href="#">
+                <a href="https://x.com/ScelumusaG">
                   <FontAwesomeIcon icon={faTwitter} size='2x' />
                   <p>X</p>
                 </a>
