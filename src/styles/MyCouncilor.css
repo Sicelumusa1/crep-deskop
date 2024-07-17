@@ -38,7 +38,7 @@
   background-color: #fdf0d5;
   color: black;
   width: 50%;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
@@ -127,7 +127,7 @@ h4 {
 
 table {
   border: 1px solid #404646;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   background-color: #63848a;
 }
 

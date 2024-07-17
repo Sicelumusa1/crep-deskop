@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   margin-top: 7.5%;
-  /* height: 100vh; */
+  margin-bottom: 40px;
 }
 
 .signup h2 {
@@ -20,17 +20,15 @@
   flex-direction: column;
   width: 40%;
   align-items: center;
-  
   background-color: #fdf0d5;
   color: black;
-  margin-bottom: 60px;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  
 }
 .signup form div {
   display: flex;
+  flex-wrap: wrap;
 }
 .signup form input {
   background-color: #fdf0d5;
@@ -68,4 +66,10 @@
 }
 .signup form p {
   margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .signup form {
+    width: 80%;
+  }
 }

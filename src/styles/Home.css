@@ -3,20 +3,149 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 13%;
+  justify-content: center;
+  margin-top: 8%;
+  margin-bottom: 40px;
 }
-.councilors-container {
+
+h1 {
+  margin-bottom: 0;
+}
+p {
+  margin-top: 5px;
+}
+.inspiration-container {
   display: flex;
   justify-content: center;
-  width: 80%;
-  margin-top: 0;
+  align-items: center;
+  width: 99%;
+  margin: 12px 0px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
-.councilors-container h4 {
-  margin-bottom: 0;
-  text-align: center;
+.money-container,
+.user-Edu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 99%;
+  margin: 12px 0px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
-.councilors-container h6 {
+.insp-story {
+  display: flex;
+  flex-direction: column;
+  flex: 45%;
+}
+.insp-story h4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.insp-story p {
+  margin: 10px;
+}
+.image-swiper {
+  flex: 45%;
+  overflow: hidden;
+  height: 100%;
+  object-fit: cover;
+}
+.insp-story h3 {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+.insp-story p {
   margin: 10px 0;
+}
+.image {
+  height: auto;
+  width: 100%;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #003049;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.App-footer {
+  text-align: center;
+  font-size: 12px;
+  position: relative;
+  color: white;
+  background-color: #003049;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-footer .reachout{
+  display: flex;
+  justify-content: space-between;
+}
+
+.App-footer .reachout-form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.App-footer .socials {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.App-footer .socials a {
+  display: flex;
+  cursor: pointer;
+  justify-content: start;
+  color: #fdf0d5;
+  margin-bottom: 10px;
+}
+
+.App-footer .socials a p {
+  margin-left: 10px;
+  font-weight: bolder;
+  text-decoration: none;
+}
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+form textarea,
+form input {
+  background-color: #fdf0d5;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: 90%;
 }
 
 .best-councilors,
@@ -149,3 +278,9 @@
   background: #19191a;
   opacity: 1;
 } */
+
+@media screen and (max-width: 768px) {
+  .inspiration-container {
+    flex-direction: column;
+  }
+}
