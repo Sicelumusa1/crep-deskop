@@ -11,6 +11,7 @@ const MyProfile = ({ isAuthenticated }) => {
       // fetch user info from backend
       axiosInstance.get('/auth/profile/')
         .then(response => {
+          console.log(response.data);
           setUser(response.data);
       })
       .catch(error => {
