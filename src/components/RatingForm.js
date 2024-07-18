@@ -48,26 +48,12 @@ const handleSubmit = () => {
     stars: rating,
     feedback: feedback,
   };
-
-  // Retrieve access token from localStorage
-  const access_token = localStorage.getItem('access_token');
   
   // Send a post request to backend
   console.log("request Data:", data)
-  axiosInstance.post(
-    `crep/councilors/${councilorId}/rate_councilor/`, 
-    data,
-     {
-      withCredentials: false,
-      headers: {
-        'Authorization': `Bearer ${access_token}`,
-        'Content-Type': 'application/json',
-      }
-    }
-  )
+  axiosInstance.post(`crep/councilors/${councilorId}/rate_councilor/`, data)
     .then((response) => {
       // Successful submission
-      console.log("Response Data:", response.data)
       console.log("Rating submited successfully:", response.data);
       setMessage('Rating submited successfully');
       setMessageClass('success-message');
