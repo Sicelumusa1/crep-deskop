@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import axios from 'axios';
+import { axiosInstance } from "../axiosConfig";
 import '../styles/Contact.css';
 
 const Contact = () => {
@@ -7,8 +7,8 @@ const Contact = () => {
   const [municipality, setMunicipality] = useState('');
   const [ward, setWard] = useState('');
   const [councilor, setCouncilor] = useState('');
-
-  const [story, setStory] = useState("");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   
 
   // State variables for dropdown options
@@ -23,7 +23,7 @@ const Contact = () => {
 
   const fetchProvinces = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/crep/provinces/');
+      const response = await axiosInstance.get('crep/provinces/');
       setProvinces(response.data);
     } catch (error) {
       console.error('Error fetching provinces:', error);
@@ -35,7 +35,7 @@ const Contact = () => {
     setProvince(selectedProvince);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/provinces/${selectedProvince}/municipalities/`);
+      const response = await axiosInstance.get(`crep/provinces/${selectedProvince}/municipalities/`);
       setMunicipalities(response.data);
     } catch (error) {
       console.error('Error fetching municipalities:', error);
@@ -46,7 +46,7 @@ const Contact = () => {
     setMunicipality(selectedMunicipality);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/municipalities/${selectedMunicipality}/wards/`);
+      const response = await axiosInstance.get(`crep/municipalities/${selectedMunicipality}/wards/`);
       setWards(response.data);
     } catch (error) {
       console.error('Error fetching wards:', error);
@@ -58,7 +58,7 @@ const Contact = () => {
     setWard(selectedWard);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/crep/wards/${selectedWard}/councilors/`)
+      const response = await axiosInstance.get(`crep/wards/${selectedWard}/councilors/`)
       setCouncilors(response.data);
     } catch (error) {
       console.error('Error fetching councilors:', error);
@@ -76,13 +76,19 @@ const Contact = () => {
 //   }
 // };
 
-  const handleStoryChange = (e) => {
-    setStory(e.target.value);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
   }
+
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  }
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  }
+  
 
   return (
     <div className='contact-us'>
@@ -114,14 +120,15 @@ const Contact = () => {
                   <option key={c.id} value={c.id}>{c.names}</option>
                 ))}
               </select>
-        </div>  
+        </div> 
+        <input type='text' placeholder='Title' value={title} onChange={handleTitleChange} required />
         <textarea 
-        value={story}
-        onChange={handleStoryChange}
+        value={description}
+        onChange={handleDescriptionChange}
         placeholder="Tell your story. Keep it short"
         required 
         maxLength={350} 
-        rows={8}
+        rows={10}
         />
         <button type="submit">Submit</button>
       </form>
