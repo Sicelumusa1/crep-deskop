@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { axiosInstance } from "../axiosConfig";
 import { Link } from "react-router-dom";
 import '../styles/Navbar.css';
 
 
 function NavBar({ isAuthenticated, toggleHeaderContent }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const User = localStorage.getItem('User');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // fetch user info from backend
+      axiosInstance.get('/auth/profile/')
+        .then(response => {
+          setUser(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching user info:', error);
+      });
+    }
+  }, [isAuthenticated]);
   
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -33,7 +47,7 @@ function NavBar({ isAuthenticated, toggleHeaderContent }) {
         <li className="nav-item"><Link to="/my-councilor" onClick={closeMenu}>My Councilor</Link></li>
         {isAuthenticated ? (
           <>
-            <li className="nav-item"><Link to="/my-profile" onClick={closeMenu}><span>{User}</span></Link></li>
+            <li className="nav-item"><Link to="/my-profile" onClick={closeMenu}><span>{user}</span></Link></li>
             <li className="nav-item"><Link to="/signup" onClick={closeMenu}>Logout</Link></li>
           </>
         ) : (

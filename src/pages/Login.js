@@ -20,13 +20,7 @@ const Login = ({setIsAuthenticated}) => {
     e.preventDefault();
     try {
       // Call backend API to authenticate user
-      const response = await axiosInstance.post('auth/login/', { email, password });
-      console.log('Full response:',response);
-      const { access_token, refresh_token, full_name } = response;
-
-      localStorage.setItem('access_token', access_token);
-      localStorage.setItem('refresh_token', refresh_token);
-      localStorage.setItem('full_name', full_name);
+      await axiosInstance.post('auth/login/', { email, password });
       
       setIsAuthenticated(true);
       // Redirect to "My Councolor" page
