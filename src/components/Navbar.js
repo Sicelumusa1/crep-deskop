@@ -47,7 +47,7 @@ function NavBar({ isAuthenticated, toggleHeaderContent }) {
         <li className="nav-item"><Link to="/my-councilor" onClick={closeMenu}>My Councilor</Link></li>
         {isAuthenticated ? (
           <>
-            <li className="nav-item"><Link to="/my-profile" onClick={closeMenu}><span>{user}</span></Link></li>
+            <li className="nav-item"><Link to="/my-profile" onClick={closeMenu}><span>{user?.username}</span></Link></li>
             <li className="nav-item"><Link to="/signup" onClick={closeMenu}>Logout</Link></li>
           </>
         ) : (
