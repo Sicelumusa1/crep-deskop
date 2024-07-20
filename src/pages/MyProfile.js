@@ -9,13 +9,14 @@ const MyProfile = ({ isAuthenticated }) => {
   useEffect(() => {
     if (isAuthenticated) {
       // fetch user info from backend
-      try {
-        const response = axiosInstance.get('auth/profile/');
-        console.log(response.data);
-        setUser(response.data);
-      } catch(error) {
+      axiosInstance.get('auth/profile/')
+       .then(response => {
+          console.log("Fetched user data:", response.data);
+          setUser(response.data);
+       })
+      .catch(error => {
         console.error('Error fetching user info:', error);
-      };
+      });
     }
   }, [isAuthenticated]);
 
@@ -23,6 +24,7 @@ const MyProfile = ({ isAuthenticated }) => {
     return (<div>Loading...</div>)
   }
 
+  console.log("User data before rendering :", user);
   return (
     <div className='user-profile'>
       <h2>My Details</h2>
