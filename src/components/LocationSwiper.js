@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { publicAxiosInstance } from '../axiosConfig';
 
 import 'swiper/swiper-bundle.css';
 import '../styles/Perspectives.css'
-import provinces from '../data/Locations';
 
 const LocationSwiper = ({ onSelectWard }) => {
 
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedMunicipality, setSelectedMunicipality] = useState(null);
+  const [provinces, setProvinces] = useState([]);
+
+  useEffect(() => {
+    // Fetch provinces when components mounts
+    const fetchProvinces = async () => {
+      try {
+        const response = await publicAxiosInstance.get('crep/provinces/');
+        setProvinces(response.data);
+      } catch (error) {
+        console.error('Error fetching provinces:', error);
+      }
+    }
+    
+    fetchProvinces();
+  }, []);
 
   const handleBackButton = () => {
     if (selectedMunicipality) {
@@ -24,8 +39,16 @@ const LocationSwiper = ({ onSelectWard }) => {
     setSelectedMunicipality(null);
   };
 
-  const handleMunicipalityClick = (municipality) => {
-    setSelectedMunicipality(municipality);
+  const handleMunicipalityClick = async (municipality) => {
+    try {
+      const response = await publicAxiosInstance.get(`crep/provinces/${selectedProvince}/municipalities/`)
+      setSelectedMunicipality({
+        ...municipality,
+        wards: response.data.wards
+      }); 
+    } catch(error) {
+      console.error('Error fetching municipalities:', error);
+    }
   };
 
   const handleWardClick = (ward) => {

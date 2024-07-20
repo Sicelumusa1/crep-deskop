@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { publicAxiosInstance } from '../axiosConfig';
 import LocationSwiper from './LocationSwiper'
 
 const CitizenStories = () => {
@@ -10,8 +10,9 @@ const CitizenStories = () => {
 
   const fetchPerspectives = (ward) => {
     setLoading(true);
-    axios
-      .get(`http://127.0.0.1:8000/crep/perspectives/?ward=${ward}`)
+    
+    publicAxiosInstance
+    .get(`crep/perspectives/?ward=${ward}`)
       .then((response) => {
         setPerspectives(response.data);
         setLoading(false);
