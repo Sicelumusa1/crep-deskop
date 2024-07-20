@@ -8,19 +8,15 @@ const CitizenStories = () => {
   const [perspectives, setPerspectives] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchPerspectives = (ward) => {
+  const fetchPerspectives = async (ward) => {
     setLoading(true);
     
-    publicAxiosInstance
-    .get(`crep/perspectives/?ward=${ward}`)
-      .then((response) => {
-        setPerspectives(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching perspectives:', error);
-        setLoading(false);
-      });
+    try {
+      const response = await publicAxiosInstance.get(`crep/perspectives/?ward=${ward.id}`)
+      setPerspectives( response.data);
+    } catch (error) {
+      console.error('Error fetching perspectives:', error);
+    }
   };
 
   const handleWardSelect = (ward) => {
@@ -34,7 +30,7 @@ const CitizenStories = () => {
         <LocationSwiper onSelectWard={handleWardSelect} />
       ) : (
         <div>
-          <h2>perspectives in {selectedWard}</h2>
+          <h2>perspectives in {selectedWard.ward_number}</h2>
           {loading ? (
             <div>Loading...</div>
           ) : (
