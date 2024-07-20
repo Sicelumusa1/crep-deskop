@@ -11,7 +11,7 @@ const CitizenStories = () => {
 
   const fetchPerspectives = async (ward) => {
     try {
-      const response = await publicAxiosInstance.get(`crep/perspectives/?ward=${ward.id}`)
+      const response = await publicAxiosInstance.get(`crep/wards/${ward.id}/perspectives/`)
       setPerspectives( response.data);
     } catch (error) {
       console.error('Error fetching perspectives:', error);
@@ -30,6 +30,9 @@ const CitizenStories = () => {
       ) : (
         <div>
           <h2>Perspectives in Ward {selectedWard.ward_number}</h2>
+          {perspectives.length === 0 ? (
+            <p>There are no perspectives yet in this ward.</p>
+          ) : (
             <ul>
               {perspectives.map((perspective) => (
                 <li key={perspective.id}>
@@ -38,6 +41,7 @@ const CitizenStories = () => {
                 </li>
               ))}
             </ul>
+          )}
         </div>
       )}
     </div>

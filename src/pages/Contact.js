@@ -12,6 +12,7 @@ const Contact = () => {
     councilor: '',
     section_or_area: '',
   });
+  const [wardId, setWardId] = useState('');
 
   // Predefined topics
   const baseTitles = [
@@ -31,6 +32,9 @@ const Contact = () => {
     try {
       const response = await axiosInstance.get('auth/profile');
       setProfile(response.data);
+      if (response.data.ward) {
+        setWardId(response.data.ward.id)
+      }
     } catch (error) {
       console.error('Error fetching user profile:', error);
     }
@@ -40,8 +44,13 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!wardId) {
+      alert('Ward information is missing.');
+      return;
+    }
+
     try {
-      await axiosInstance.post('crep/perspectives/', {
+      await axiosInstance.post(`crep/wards/${wardId}/perspectives/`, {
         title,
         description
       });
@@ -55,10 +64,6 @@ const Contact = () => {
     }
   };
 
-
-  // const handleTitleChange = (e) => {
-  //   setTitle(e.target.value);
-  // }
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   }
