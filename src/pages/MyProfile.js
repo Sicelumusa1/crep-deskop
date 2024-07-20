@@ -20,6 +20,10 @@ const MyProfile = ({ isAuthenticated }) => {
     }
   }, [isAuthenticated]);
 
+  if (!user) {
+    return (<div>Loading...</div>)
+  }
+
   return (
     <div className='user-profile'>
       <h2>My Details</h2>
