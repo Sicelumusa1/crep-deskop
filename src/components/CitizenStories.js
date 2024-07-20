@@ -6,11 +6,9 @@ const CitizenStories = () => {
   
   const [selectedWard, setSelectedWard] = useState(null);
   const [perspectives, setPerspectives] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const fetchPerspectives = async (ward) => {
-    setLoading(true);
-    
     try {
       const response = await publicAxiosInstance.get(`crep/perspectives/?ward=${ward.id}`)
       setPerspectives( response.data);
@@ -30,10 +28,7 @@ const CitizenStories = () => {
         <LocationSwiper onSelectWard={handleWardSelect} />
       ) : (
         <div>
-          <h2>perspectives in {selectedWard.ward_number}</h2>
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
+          <h2>Perspectives in Ward {selectedWard.ward_number}</h2>
             <ul>
               {perspectives.map((perspective) => (
                 <li key={perspective.id}>
@@ -42,10 +37,9 @@ const CitizenStories = () => {
                 </li>
               ))}
             </ul>
-          )}
+        </div>
+      )}
     </div>
-  )}
-</div>
   );
 };  
 export default CitizenStories;
