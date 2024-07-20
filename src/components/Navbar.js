@@ -11,7 +11,7 @@ function NavBar({ isAuthenticated, toggleHeaderContent }) {
   useEffect(() => {
     if (isAuthenticated) {
       // fetch user info from backend
-      axiosInstance.get('/auth/profile/')
+      axiosInstance.get('auth/profile/')
         .then(response => {
           setUser(response.data);
       })

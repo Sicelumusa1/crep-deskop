@@ -9,7 +9,7 @@ const MyProfile = ({ isAuthenticated }) => {
   useEffect(() => {
     if (isAuthenticated) {
       // fetch user info from backend
-      axiosInstance.get('/auth/profile/')
+      axiosInstance.get('auth/profile/')
         .then(response => {
           console.log(response.data);
           setUser(response.data);
