@@ -33,39 +33,35 @@ const MyProfile = ({ isAuthenticated }) => {
              <tbody>
                 <tr>
                  <td>Email</td>
-                 <td>{user?.email}</td>
+                 <td>{user.email}</td>
                 </tr>
                 <tr>
                  <td>Firstname</td>
-                 <td>{user?.first_name}</td>
+                 <td>{user.first_name}</td>
                 </tr>
                 <tr>
                  <td>Lastname</td>
-                 <td>{user?.last_name}</td>
+                 <td>{user.last_name}</td>
                 </tr>
                 <tr>
                  <td>Username</td>
-                 <td>{user?.username}</td>
+                 <td>{user.username}</td>
                 </tr>
                 <tr>
                  <td>Province</td>
-                 <td>{user?.province}</td>
+                 <td>{user.province}</td>
                 </tr>
                 <tr>
                  <td>Municipality</td>
-                 <td>{user?.municipality}</td>
+                 <td>{user.municipality}</td>
                 </tr>
                 <tr>
                  <td>Ward_number</td>
-                 <td>{user?.ward_number}</td>
+                 <td>{user.ward_number}</td>
                 </tr>
                 <tr>
                  <td>Section_or_area</td>
-                 <td>{user?.section_or_area}</td>
-                </tr>
-                <tr>
-                 <td>Password</td>
-                 <td>{user?.password}</td>
+                 <td>{user.section_or_area}</td>
                 </tr>
              </tbody> 
         </table> 
