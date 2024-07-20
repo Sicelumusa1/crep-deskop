@@ -61,7 +61,7 @@ const MyProfile = ({ isAuthenticated }) => {
                 </tr>
                 <tr>
                  <td>Ward_number</td>
-                 <td>{user?.ward_number || 'Not Available'}</td>
+                 <td>{user?.ward || 'Not Available'}</td>
                 </tr>
                 <tr>
                  <td>Section_or_area</td>
