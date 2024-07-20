@@ -105,7 +105,7 @@ const LocationSwiper = ({ onSelectWard }) => {
         >
           {selectedMunicipality.wards.map((ward, index) => (
             <SwiperSlide key={index} onClick={() => handleWardClick(ward)}>
-              {ward}
+              {ward.ward_number}
             </SwiperSlide>
           ))}
         </Swiper>

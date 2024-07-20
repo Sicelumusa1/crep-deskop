@@ -28,6 +28,7 @@
   background-color: #fdf0d5;
   border-radius: 10px;
   color: black;
+  cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   height: calc((100% - 30px) / 2) !important;
