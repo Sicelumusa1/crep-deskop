@@ -34,20 +34,27 @@ const LocationSwiper = ({ onSelectWard }) => {
     }
   };
 
-  const handleProvinceClick = (province) => { 
-    setSelectedProvince(province);
-    setSelectedMunicipality(null);
+  const handleProvinceClick = async (province) => { 
+    try {
+      const response = await publicAxiosInstance.get(`crep/provinces/${province.id}/municipalities/`)
+      setSelectedProvince({
+        ...province,
+        municipalities: response.data
+      }); 
+    } catch(error) {
+      console.error('Error fetching municipalities:', error);
+    }
   };
 
   const handleMunicipalityClick = async (municipality) => {
     try {
-      const response = await publicAxiosInstance.get(`crep/provinces/${selectedProvince}/municipalities/`)
+      const response = await publicAxiosInstance.get(`crep/municipalities/${municipality.id}/wards/`)
       setSelectedMunicipality({
         ...municipality,
-        wards: response.data.wards
+        wards: response.data
       }); 
     } catch(error) {
-      console.error('Error fetching municipalities:', error);
+      console.error('Error fetching wards:', error);
     }
   };
 
