@@ -71,13 +71,6 @@ const Contact = () => {
       <h3>Share Your Feedback</h3>
       <h3>Praise Excellence or Report Issues</h3>
       <form onSubmit={handleSubmit}>
-        <div className='user-info'>
-          <p>{profile.province}</p>
-          <p>{profile.municipality}</p>
-          <p>{profile.ward}</p>
-          <p>{profile.councilor}</p>
-          <p>{profile.section_or_area}</p>
-        </div>
         <select value={title} onChange={(e) => setTitle(e.target.value)} required>
           <option value=''>Select Topic</option>
           {titles.map((t, index) => (
