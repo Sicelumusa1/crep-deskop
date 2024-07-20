@@ -73,6 +73,7 @@ const LocationSwiper = ({ onSelectWard }) => {
           modules={[Grid, Pagination]}
           className='perspectives'
         >
+          <h2>Residents Perspectives On Local Governance Per Province</h2>
           {provinces.map((province, index) => (
             <SwiperSlide key={index} onClick={() => handleProvinceClick(province)}>
               {province.name}
@@ -88,6 +89,7 @@ const LocationSwiper = ({ onSelectWard }) => {
           modules={[Grid, Pagination]}
           className='perspectives'
         >
+          <h2>Residents Perspectives On Local Governance Per Municipality</h2>
           {selectedProvince.municipalities.map((municipality, index) => (
             <SwiperSlide key={index} onClick={() => handleMunicipalityClick(municipality)}>
               {municipality.name}
@@ -103,8 +105,9 @@ const LocationSwiper = ({ onSelectWard }) => {
           modules={[Grid, Pagination]}
           className='perspectives'
         >
+          <h2>Residents Perspectives On Local Governance Per Ward</h2>
           {selectedMunicipality.wards.map((ward, index) => (
-            <SwiperSlide key={index} onClick={() => handleWardClick(ward)}>
+            <SwiperSlide key={index} onClick={() => handleWardClick(ward)}> Ward:
               {ward.ward_number}
             </SwiperSlide>
           ))}

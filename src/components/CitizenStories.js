@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { publicAxiosInstance } from '../axiosConfig';
-import LocationSwiper from './LocationSwiper'
+import LocationSwiper from './LocationSwiper';
+import '../styles/Perspectives.css';
 
 const CitizenStories = () => {
   
@@ -23,7 +24,7 @@ const CitizenStories = () => {
   };
   
   return (
-    <div>
+    <div className='ward-perspectives'>
       {selectedWard === null ? (
         <LocationSwiper onSelectWard={handleWardSelect} />
       ) : (
