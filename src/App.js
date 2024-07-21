@@ -9,8 +9,9 @@ import MyCouncilor from './pages/MyCouncilor';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
-
+import ActivePetitionsCircle from "./components/ActivePetitionsCircle";
 import EmailVerification from './components/EmailVerification';
+import PetitionsPage from './components/PetitionsPage';
 import './App.css';
 import { useState } from 'react';
 
@@ -31,7 +32,7 @@ function App() {
               {/* <p>Community Rating and Empowerment Platform</p> */}
             </div>
           )}
-          
+          <ActivePetitionsCircle />
           <NavBar isAuthenticated={isAuthenticated} toggleHeaderContent={() => setShowHeaderContent(prev => !prev)} />
         </header>
           
@@ -45,6 +46,8 @@ function App() {
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/logout" element={<Logout />} />
           <Route path='/otp-verification' element={<EmailVerification  isVerified={isVerified} setIsVerified={setIsVerified} />} />
+          <Route path='/petition' element={<PetitionsPage />} />
+
         </Routes>
       </div>
     </Router>
