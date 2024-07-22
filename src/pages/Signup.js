@@ -123,7 +123,11 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
         let errorMessages = '';
 
         Object.keys(errorData).forEach((key) => {
-          errorMessages += `${key}: ${errorData[key].join(', ')}\n`;
+          if (Array.isArray(errorData[key])) {
+            errorMessages += `${key}: ${errorData[key].join(', ')}\n`;
+          } else {
+            errorMessages += `${key}: ${errorData[key]}\n`;
+          }  
         });
         setMessage(errorMessages);
       }
