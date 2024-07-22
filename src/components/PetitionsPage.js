@@ -10,7 +10,7 @@ const PetitionsPage = () => {
 
   useEffect(() => {
     publicAxiosInstance.get('crep/provinces/')
-      .then(response => setProvinces(response.data.length))
+      .then(response => setProvinces(response.data))
       .catch(error => console.error('Erro fetching petitions:', error));
   }, []);
 
