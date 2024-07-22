@@ -50,15 +50,15 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
   };
 
 // Function to resolve ward number into ward ID
-// const resolveWardId = async (selectedWardNumber) => {
-//   try {
-//     const response = await axiosInstance.get(`crep/wards/${selectedWardNumber}`);
-//     return response.data[0].id;
-//   } catch (error) {
-//     console.error('Error resolving ward number:', error);
-//     return null;
-//   }
-// };
+const resolveWardId = async (selectedWardNumber) => {
+  try {
+    const response = await axiosInstance.get(`crep/wards/${selectedWardNumber}`);
+    return response.data[0].id;
+  } catch (error) {
+    console.error('Error resolving ward number:', error);
+    return null;
+  }
+};
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -87,7 +87,7 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
       section_or_area,
       province,
       municipality,
-      ward,
+      ward: resolveWardId,
       councilor: councilor.id
     }, {
       headers: {

@@ -66,7 +66,7 @@ const useLocationData = () => {
   const fetchCouncilorDetails = async (wardNumber) => {
     try {
       const response = await publicAxiosInstance.get(`crep/wards/${wardNumber}/councilors/`);
-      setCouncilor(response.data[0]);
+      setCouncilor(response.data);
     
     } catch (error) {
       console.error('Error fetching councilor details:', error);
