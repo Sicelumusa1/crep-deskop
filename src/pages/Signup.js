@@ -88,7 +88,7 @@ const resolveWardId = async (selectedWardNumber) => {
       province,
       municipality,
       ward: resolveWardId,
-      councilor
+      councilor: councilor.id
     }, {
       headers: {
         'Content-Type': 'application/json'
@@ -174,9 +174,13 @@ const resolveWardId = async (selectedWardNumber) => {
                 <option key={w.ward_number} value={w.ward_number}>{w.ward_number}</option>
               ))}
             </select>
-            <select id="councilor" value={councilor ? councilor.id : ''} disabled required>
-              <option value=''>{councilor ? councilor.names : 'Select Ward First'}</option>
-            </select>
+            <input 
+              type='text'
+              id='councilor'
+              value={councilor ? `${councilor.names} ${councilor.surname}` : 'Select Ward First'} 
+              readOnly
+              required  
+            />
           </div>
         </div>
         
