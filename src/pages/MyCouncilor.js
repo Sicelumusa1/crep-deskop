@@ -1,86 +1,62 @@
-import React, { useState, useEffect } from "react";
-// import axios from 'axios';
+import { useState } from "react";
 import MyProvince from "../components/MyProvince";
 import MyMunicipality from "../components/MyMunicipality";
 import MyWard from "../components/MyWard";
 import CouncilorInfo from "../components/Councilor";
 import '../styles/MyCouncilor.css';
 import CouncilorTable from "../components/CouncilorTable";
-import { publicAxiosInstance } from '../axiosConfig';
+import useLocationData from '../hooks/useLocationData';
 
 
 const MyCouncilor = () => {
-  const [provinces, setProvinces] = useState([]);
-  const [municipalities, setMunicipalities] = useState([]);
-  const [wards, setWards] = useState([]);
-  // const [councilors, setCouncilors] = useState([]);
+  const {
+    provinces,
+    municipalities,
+    provinceName,
+    municipalityName,
+    wards,
+    councilor,
+    fetchMunicipalities,
+    fetchWards,
+    fetchProvinceName,
+    fetchMunicipalityName,
+    fetchCouncilorDetails
+  } = useLocationData();
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedMunicipality, setSelectedMunicipality] = useState('');
   const [selectedWard, setSelectedWard] = useState('');
-  const [selectedCouncilor, setSelectedCouncilor] = useState(null);
-  const [selectedProvinceName, setSelectedProvinceName] = useState('');
-  const [selectedMunicipalityName, setSelectedMunicipalityName] = useState('');
 
 
-  useEffect(() => {
-    // Fetch provinces
-    publicAxiosInstance.get('crep/provinces/')
-    .then((response) => setProvinces(response.data))
-    .catch((error) => console.error('Error fetching provinces:', error));
-  }, []);
-
-    // Handle province selestion
-    const handleProvinceChange = (e) => {
-      const selectedProvinceId = e.target.value;
-      setSelectedProvince(selectedProvinceId);
-      setSelectedMunicipality('');
-      setSelectedWard('');
-      setSelectedCouncilor(null);
+  // Handle province selection
+  const handleProvinceChange = async (e) => {
+    const selectedProvinceId = e.target.value;
+    setSelectedProvince(selectedProvinceId);
+    setSelectedMunicipality('');
+    setSelectedWard('');
   
-      // Fetch municipalities for the selected province
-      publicAxiosInstance.get(`crep/provinces/${selectedProvinceId}/municipalities/`)
-        .then((response) => setMunicipalities(response.data))
-        .catch((error) => console.error('Error fetching municipalities:', error));
+    // Fetch municipalities for the selected province and Province Name
+    await fetchMunicipalities(selectedProvinceId);
+    await fetchProvinceName(selectedProvinceId);
+  };
 
-        // Fetch Province Name
-        publicAxiosInstance.get(`crep/provinces/${selectedProvinceId}`)
-          .then((response) => setSelectedProvinceName(response.data.name))
-          .catch((error) => console.error('Error fetching province details'));
-    };
-
-    // Handle municipality selection
-  const handleMunicipalityChange = (e) => {
+  // Handle municipality selection
+  const handleMunicipalityChange = async (e) => {
     const selectedMunicipalityId = e.target.value;
     setSelectedMunicipality(selectedMunicipalityId);
     setSelectedWard('');
-    setSelectedCouncilor(null);
 
-    // Fetch wards for the selected municipality
-    publicAxiosInstance.get(`crep/municipalities/${selectedMunicipalityId}/wards/`)
-      .then((response) => setWards(response.data))
-      .catch((error) => console.error('Error fetching wards:', error));
-
-    // Fetch Municipality Name
-    publicAxiosInstance.get(`crep/municipalities/${selectedMunicipalityId}`)
-          .then((response) => setSelectedMunicipalityName(response.data.name))
-          .catch((error) => console.error('Error fetching Municipality details'));
+    // Fetch wards for the selected municipality and Municipality Name
+    await fetchWards(selectedMunicipalityId)
+    await fetchMunicipalityName(selectedMunicipalityId)
   };
 
   // Handle ward selestion
-  const handleWardChange = (e) => {
+  const handleWardChange = async (e) => {
     const selectedWardNumber = e.target.value;
     setSelectedWard(selectedWardNumber);
-    setSelectedCouncilor(null);
 
     // Fetch councilor for the selected ward
-    publicAxiosInstance
-        .get(`crep/wards/${selectedWardNumber}/councilors/`)
-        .then((response) => {
-          setSelectedCouncilor(response.data)
-        })
-        .catch((error) => {
-            console.error('Error fetching councilor details:', error)
-        });
+    await fetchCouncilorDetails(selectedWardNumber);
   }  
   
   return (
@@ -149,9 +125,9 @@ const MyCouncilor = () => {
             ) : (
               // Display details of the selected ward/councilor
               <CouncilorInfo 
-                selectedCouncilor={selectedCouncilor} 
-                selectedMunicipalityName={selectedMunicipalityName} 
-                selectedProvinceName={selectedProvinceName} 
+                selectedCouncilor={councilor} 
+                selectedMunicipalityName={municipalityName} 
+                selectedProvinceName={provinceName} 
               />
             )}
         </div>
