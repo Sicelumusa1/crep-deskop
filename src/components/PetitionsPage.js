@@ -24,7 +24,7 @@ const PetitionsPage = () => {
       {provinces.map(province => (
         <Province 
           key={province.id}
-          province={province}
+          province={province.name}
           toggleModal={toggleModal}
         />
       ))}
