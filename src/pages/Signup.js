@@ -175,7 +175,7 @@ const resolveWardId = async (selectedWardNumber) => {
           <select value={ward} onChange={(e) => handleWardChange(e.target.value)} required>
               <option value=''>Select Ward</option>
               {wards.map((w) => (
-                <option key={w.id} value={w.}>{w.ward_number}</option>
+                <option key={w.id} value={w.id}>{w.ward_number}</option>
               ))}
             </select>
             <input 
