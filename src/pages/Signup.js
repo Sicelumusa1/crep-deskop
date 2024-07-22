@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { axiosInstance } from '../axiosConfig';
 import { useNavigate, Link } from 'react-router-dom';
-import { getProvince, getMunicipality, getWard, getCouncilor } from '../services/MyCouncilorService';
+import useLocationData from '../hooks/useLocationData'
 import '../styles/Signup.css'
 
 const Signup = ({ isRegistered, setIsRegistered }) => {
@@ -16,63 +16,37 @@ const Signup = ({ isRegistered, setIsRegistered }) => {
   const [province, setProvince] = useState('');
   const [municipality, setMunicipality] = useState('');
   const [ward, setWard] = useState('');
-  const [councilor, setCouncilor] = useState('');
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [messageClass, setMessageClass] = useState('');
 
   // State variables for dropdown options
-  const [provinces, setProvinces] = useState([]);
-  const [municipalities, setMunicipalities] = useState([]);
-  const [wards, setWards] = useState([]);
-  const [councilors, setCouncilors] = useState([]);
-
-  useEffect(() => {
-    fetchProvinces();
-  }, []);
-
-  const fetchProvinces = async () => {
-    try {
-      const data = await getProvince();
-      setProvinces(data);
-    } catch (error) {
-      console.error('Error fetching provinces:', error);
-    }
-  };
+  const {
+    provinces, 
+    municipalities,
+    wards,
+    councilor,
+    fetchMunicipalities,
+    fetchWards,
+    fetchCouncilorDetails
+  } = useLocationData();
 
   // Fetch municipalities based on selested province
   const handleProvinceChange =  async (selectedProvince) => {
     setProvince(selectedProvince);
-
-    try {
-      const data = await getMunicipality(selectedProvince);
-      setMunicipalities(data);
-    } catch (error) {
-      console.error('Error fetching municipalities:', error);
-    }
+    await fetchMunicipalities(selectedProvince);
   };
+
   // Fetch wards based on selested municipality
   const handleMunicipalityChange =  async (selectedMunicipality) => {
     setMunicipality(selectedMunicipality);
-
-    try {
-      const data = await getWard(selectedMunicipality);
-      setWards(data);
-    } catch (error) {
-      console.error('Error fetching wards:', error);
-    }
+    await fetchWards(selectedMunicipality);
   };
 
   // Fetch councilors based on selected ward
   const handleWardChange = async(selectedWard) => {
     setWard(selectedWard);
-
-    try {
-      const data = await getCouncilor (selectedWard)
-      setCouncilors(data);
-    } catch (error) {
-      console.error('Error fetching councilors:', error);
-    }
+    await fetchCouncilorDetails(selectedWard);
   };
 
 // Function to resolve ward number into ward ID
@@ -141,7 +115,6 @@ const resolveWardId = async (selectedWardNumber) => {
       setProvince('');
       setMunicipality('');
       setWard('');
-      setCouncilor('')
       setIsRegistered(true)
     } catch (error) {
       console.error('Registration failed:', error);
@@ -201,11 +174,8 @@ const resolveWardId = async (selectedWardNumber) => {
                 <option key={w.ward_number} value={w.ward_number}>{w.ward_number}</option>
               ))}
             </select>
-            <select value={councilor} onChange={(e) => setCouncilor(e.target.value)} required>
-              <option value=''>Select Councilor</option>
-              {councilors.map((c) => (
-                <option key={c.id} value={c.id}>{c.names}</option>
-              ))}
+            <select id="councilor" value={councilor ? councilor.id : ''} disabled required>
+              <option value=''>{councilor ? councilor.names : 'Select Ward First'}</option>
             </select>
           </div>
         </div>
